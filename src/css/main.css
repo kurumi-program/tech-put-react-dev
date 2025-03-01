@@ -1,0 +1,806 @@
+:root {
+  --primary-color: #2eb4d5;
+  --sky-blue: #dbf8ff;
+  --gray-color-1: #ebecef;
+  --gray-color-2: #ddd;
+  --gray-color-3: #f6f6f6;
+  --gray-color-4: #585858;
+  --color-white: #fff;
+  --border-color: #e5e7eb;
+  --black-color: #000000;
+}
+
+/* common */
+.small-text {
+  font-size: 12px;
+  color: var(--gray-color-4);
+}
+
+.btn {
+  transition: all 0.5s;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
+/* header */
+
+header {
+  top: 0;
+  left: 0;
+  position: fixed;
+  width: 100%;
+  background: var(--color-white);
+  z-index: 100;
+}
+
+.header-container {
+  margin: 0 auto;
+  max-width: 1340px;
+  align-items: center;
+}
+
+@media (max-width: 559px) {
+  .header-container {
+    justify-content: space-between;
+  }
+}
+
+.logo {
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.header-logo {
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 20px;
+  color: var(--primary-color);
+  cursor: pointer;
+}
+
+.user-icon {
+  margin-right: 20px;
+}
+
+@media (min-width: 560px) {
+  .search-sp {
+    display: none;
+  }
+}
+
+.search {
+  display: flex;
+  height: auto;
+  align-items: center;
+  position: relative;
+}
+
+@media (max-width: 559px) {
+  .search {
+    display: none;
+  }
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  left: 25px;
+  transform: translate(-50%, -50%);
+}
+
+.search-input {
+  width: 400px;
+  max-width: 100%;
+  height: 35px;
+  border-radius: 30px;
+  background: var(--gray-color-1);
+  padding-right: 40px;
+  padding-left: 40px;
+  font-size: 14px;
+}
+
+@media (max-width: 559px) {
+  .search-input {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+}
+
+.search-input-sp {
+  width: 60%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 80px;
+  display: none;
+}
+.search-hover {
+  padding-left: 3px;
+  transition: all 1s;
+}
+.search-hover:hover .search-input-sp {
+  display: block;
+}
+
+@media (min-width: 560px) {
+  .search-input-sp {
+    display: none;
+  }
+}
+
+.circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--gray-color-2);
+}
+
+.display-none {
+  display: none;
+}
+
+/* 全体設定 */
+.layout {
+  display: flex;
+  max-width: 1340px;
+  margin: 55px auto 0;
+  justify-content: space-between;
+}
+
+/* sidebar */
+.sidebar {
+  position: relative;
+  /* background: var(--primary-color); */
+  font-size: 20px;
+  min-height: 100vh;
+}
+
+.sidebar-box {
+  margin-top: 25px;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.sidebar-box li {
+  margin-top: 15px;
+}
+
+.sidebar-l-w {
+  width: 310px;
+}
+
+@media (max-width: 1100px) {
+  .sidebar-l-w {
+    width: 65px;
+  }
+}
+@media (max-width: 499px) {
+  .sidebar-l-w {
+    display: none;
+  }
+}
+
+.sidebar-left {
+  /* background: var(--gray-color-1); */
+  padding: 20px;
+}
+
+.sidebar-left li {
+  display: flex;
+  height: auto;
+  align-items: center;
+  margin-top: 25px;
+  cursor: pointer;
+}
+
+.sidebar-left p {
+  margin-left: 18px;
+}
+@media (max-width: 1100px) {
+  .sidebar-left p {
+    display: none;
+  }
+}
+
+.side-icon {
+  width: 25px;
+  font-size: 24px;
+  text-align: center;
+}
+.sidebar-r-w {
+  width: 310px;
+}
+@media (max-width: 805px) {
+  .sidebar-r-w {
+    display: none;
+  }
+}
+
+.sidebar-right {
+  /* background: var(--gray-color-1); */
+  height: 100vh;
+  overflow-y: auto;
+  padding-right: 20px;
+}
+
+.sidebar-right h3 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.title {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.content {
+  font-size: 13px;
+  margin-top: 3px;
+  color: var(--gray-color-4);
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* 表示する行数 */
+  -webkit-box-orient: vertical; /* 縦方向に配置 */
+  overflow: hidden; /* オーバーフローを隠す */
+}
+
+.sidebar-flex {
+  display: flex;
+  height: auto;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sidebar-flex p {
+  line-height: 1.2;
+}
+
+.user-name {
+  font-size: 15px;
+}
+
+.user-id {
+  font-size: 13px;
+  color: var(--gray-color-4);
+}
+
+.sidebar-b {
+  margin-bottom: 80px;
+}
+
+.follow-btn {
+  font-size: 14px;
+  background: var(--primary-color);
+  padding: 4px 10px;
+  border-radius: 50px;
+  font-weight: bold;
+  color: var(--color-white);
+  white-space: nowrap;
+}
+
+.unfollow-btn {
+  font-size: 14px;
+  padding: 4px 10px;
+  border-radius: 50px;
+  font-weight: bold;
+  background: var(--color-white);
+  border: 1px solid var(--border-color);
+}
+
+/* sidebar-sp */
+.sidebar-sp {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  position: fixed;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  /* background: var(--color-white); */
+  opacity: 0.9;
+}
+
+.sidebar-sp li {
+  cursor: pointer;
+}
+
+@media (min-width: 500px) {
+  .sidebar-sp {
+    display: none;
+  }
+}
+
+/* sidebar icon */
+
+.side-sp-icon {
+  font-size: 22px;
+  width: 30px;
+  text-align: center;
+}
+
+.bell-active {
+  position: relative;
+}
+
+.bell-active::after {
+  content: "";
+  position: absolute;
+  right: -2px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: red;
+}
+
+/* main */
+.main {
+  flex: 1;
+}
+.main-container {
+  margin: 20px 20px 30px;
+  /* background: var(--gray-color-1); */
+}
+.sidebar-content {
+  position: fixed;
+  max-width: 310px;
+}
+
+.article {
+  /* background: var(--primary-color); */
+  padding: 30px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.article p {
+  min-height: 1em;
+}
+
+/*--------- 投稿画面 ----------- */
+.form-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  overflow-y: auto;
+}
+.form-container {
+  box-sizing: border-box;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-white);
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 630px;
+  width: 90%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 767px) {
+  .form-container {
+    padding: 20px;
+  }
+}
+
+.form-head {
+  padding-bottom: 15px;
+  font-weight: bold;
+  font-size: 23px;
+}
+
+@media (max-width: 499px) {
+  .form-head {
+    font-size: 20px;
+  }
+}
+
+.form-editor {
+  margin-top: 10px;
+}
+
+.form-icon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 24px;
+  color: gray;
+  cursor: pointer;
+}
+.form-submit {
+  text-align: center;
+}
+.form-button {
+  cursor: pointer;
+  width: 400px;
+  max-width: 100%;
+  padding: 10px;
+  border: none;
+  color: var(--color-white);
+  font-weight: bold;
+  background: var(--primary-color);
+  margin-top: 20px;
+  transition: all 0.5s;
+}
+.form-btn-radius {
+  border-radius: 6px;
+}
+
+.form-button:hover {
+  opacity: 0.8;
+}
+
+/* エディタースタイル */
+.DraftEditor-root {
+  margin-top: 10px;
+}
+.rdw-option-wrapper:not(:first-child) {
+  display: none;
+}
+.rdw-image-modal-size {
+  display: none;
+}
+
+.editorClassName {
+  min-height: 200px;
+}
+
+.rdw-editor-toolbar {
+  border: none;
+}
+
+.rdw-dropdown-wrapper {
+  height: 20px;
+}
+
+.rdw-image-modal-btn {
+  width: auto;
+  padding: 0 10px;
+  border-radius: 3px;
+}
+
+.rdw-image-modal-header-option {
+  line-height: 1.2;
+}
+
+.rdw-image-modal-btn:disabled {
+  background: var(--primary-color);
+  color: var(--color-white);
+}
+
+.rdw-link-modal-btn {
+  width: auto;
+  padding: 0 10px;
+  border-radius: 3px;
+}
+
+.rdw-link-modal {
+  height: auto;
+}
+
+.rdw-link-modal-btn:disabled {
+  background: var(--primary-color);
+  color: var(--color-white);
+}
+
+.rdw-image-modal-header-option {
+  font-size: 14px;
+}
+.rdw-link-modal-label {
+  font-size: 14px;
+}
+
+.public-DraftStyleDefault-block {
+  margin: 0;
+}
+
+/* モーダル背景スクロール無効 */
+.over-hidden {
+  overflow: hidden;
+}
+
+/* ログイン画面 */
+.login-form {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  align-items: center;
+}
+
+.login-form-wrapper {
+  width: 350px;
+  max-width: 100%;
+  padding: 20px 40px;
+}
+
+@media (max-width: 499px) {
+  .login-form-wrapper {
+    border: none;
+  }
+}
+
+.form-logo {
+  font-size: 30px;
+}
+
+.input-area {
+  margin-top: 10px;
+}
+
+.input-area input {
+  width: 100%;
+  padding: 8px;
+}
+
+.sns-btn {
+  color: var(--primary-color);
+  display: flex;
+  height: auto;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  margin-top: 10px;
+  transition: all 0.5s;
+}
+
+.sns-btn:hover {
+  opacity: 0.7;
+}
+
+.sns-btn i {
+  font-size: 22px;
+}
+
+.sns-btn button {
+  margin-left: 10px;
+}
+
+.register-btn {
+  border-top: 2px solid var(--border-color);
+  transition: all 0.5s;
+}
+
+.register-btn:hover {
+  opacity: 0.7;
+}
+
+.register-btn button {
+  border: 1px solid var(--gray-color-4);
+  color: var(--gray-color-4);
+  padding: 10px;
+}
+
+/* 詳細 */
+.icon {
+  cursor: pointer;
+}
+.icon:not(:first-child) {
+  margin-left: 17px;
+}
+
+.count {
+  font-size: 14px;
+  margin-left: 3px;
+  color: var(--gray-color-4);
+}
+
+/* 詳細のコメント */
+.circle-comment {
+  height: 40px;
+  width: 40px;
+}
+
+.comment-txt {
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+.point-three {
+  font-size: 20px;
+  margin-left: 10px;
+  color: var(--gray-color-4);
+}
+.handle-comment {
+  position: relative;
+  cursor: pointer;
+}
+
+.handle-comment_dropdown {
+  position: absolute;
+  top: calc(100% - 3px);
+  right: 0;
+  z-index: 101;
+  padding: 5px 0;
+  border-radius: 5px;
+  background: var(--color-white);
+  font-size: 13px;
+  white-space: nowrap;
+  display: none;
+  color: var(--primary-color);
+}
+
+.handle-comment_dropdown p {
+  padding: 0 5px;
+}
+
+.handle-comment_dropdown p:hover {
+  background: var(--sky-blue);
+}
+
+.handle-comment:hover .handle-comment_dropdown {
+  display: block;
+}
+
+.comment-input {
+  border-bottom: 1px solid var(--gray-color-2);
+  width: 100%;
+  font-size: 14px;
+}
+
+.comment-input:focus {
+  border-bottom: 2px solid var(--primary-color);
+  outline: none;
+}
+
+.add-comment-btn {
+  background: var(--primary-color);
+  color: var(--color-white);
+  font-weight: bold;
+  border-radius: 30px;
+  padding: 5px 15px;
+  transition: all 0.5s;
+}
+
+.add-comment-btn:hover {
+  opacity: 0.8;
+}
+
+/* ログインしてない時のトップ画面 */
+.login-btn {
+  margin-right: 20px;
+  transition: all 0.5s;
+}
+
+@media (max-width: 559px) {
+  .login-btn {
+    font-size: 14px;
+  }
+}
+
+.login-btn:hover {
+  background: var(--primary-color);
+  color: var(--color-white);
+}
+
+/* プロフィール */
+.circle-profile {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+}
+
+.profile-user-name {
+  font-size: 22px;
+  line-height: 1.3;
+}
+
+.profile-user-id {
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.stat-item {
+  justify-content: center;
+}
+
+.stat-item li {
+  width: 90px;
+  cursor: pointer;
+}
+
+.stat-item {
+  font-size: 14px;
+  color: var(--gray-color-4);
+}
+
+.stat-item p {
+  transition: all 0.5s;
+}
+
+.stat-item p:hover {
+  opacity: 0.8;
+}
+
+.profile-description {
+  margin-top: 30px;
+  justify-content: center;
+  display: flex;
+}
+
+.profile-description p {
+  max-width: 400px;
+  font-size: 14px;
+}
+
+.edit-btn {
+  margin-top: 30px;
+}
+
+.articles-title {
+  margin-bottom: -10px;
+}
+
+/* フォロー・フォロワーページ */
+.follow-article {
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.follow-container:not(:last-child) {
+  border-bottom: 1px var(--border-color) solid;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 499px) {
+  .follow-container:not(:last-child) {
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+  }
+}
+
+.follow-circle {
+  width: 40px;
+  height: 40px;
+}
+
+.follow-container {
+  align-items: start;
+}
+
+@media (max-width: 499px) {
+  .follow-container {
+    display: block;
+  }
+}
+
+.follow-btn-wrapper {
+  margin-top: 10px;
+  text-align: right;
+}
+
+.follow-user-wrapper p {
+  font-size: 14px;
+}
+
+/* ドロップダウン */
+.dropdown {
+  position: absolute;
+  top: 100%;
+  right: 20px;
+  background: var(--color-white);
+  padding: 5px 10px;
+  border-radius: 4px;
+  display: none;
+}
+
+.dropdown li {
+  white-space: nowrap;
+  font-size: 14px;
+}
+.user {
+  cursor: pointer;
+}
+
+.user:hover .dropdown {
+  display: block;
+  cursor: pointer;
+}

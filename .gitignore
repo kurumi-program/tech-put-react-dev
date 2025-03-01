@@ -1,0 +1,3 @@
+# .gitignore (React用)
+/node_modules
+/dist
