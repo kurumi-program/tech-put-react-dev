@@ -1,14 +1,14 @@
 import React from "react";
+import { Post } from "../../types/post";
 
 type Props = {
-  index: number;
-  post: string;
-}
+  post: Post;
+};
 
-export const PostItem = ({index, post}: Props) => {
+export const PostItem = ({ post }: Props) => {
   return (
     <li className="article border">
-      <div key={index} dangerouslySetInnerHTML={{ __html: post }} />
+      <div dangerouslySetInnerHTML={{ __html: post.content }} />
       <i className="fa-regular fa-heart mt-3"></i>
     </li>
   );

@@ -2,13 +2,15 @@ import React, { useContext } from "react";
 import { FollowButton } from "../parts/FollowButton";
 import { UserParts } from "../parts/UserParts";
 import { FormButton } from "../parts/FormButton";
-import { AuthSnsButton } from "../parts/AuthSnsButton";
 import { AuthContext } from "../../contexts/AuthContext";
-import { useNavigation } from "../../hooks/useNavigation";
+import { useNavigation } from "../../hooks/navigations/useNavigation";
 
 export const SidebarRight = () => {
   const { currentUser } = useContext(AuthContext);
   const { handleNavigate } = useNavigation();
+
+  if (currentUser === undefined) return null;
+
   return (
     <aside className="sidebar sidebar-r-w flex-item">
       <div className="sidebar-right sidebar-content">

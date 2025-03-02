@@ -3,8 +3,8 @@ import { InputArea } from "../../components/header/InputArea";
 import { FormButton } from "../../components/parts/FormButton";
 import { AuthForm } from "../../components/layout/AuthForm";
 import { AuthSubTextRight } from "../../components/parts/AuthSubTextRight";
-import { useNavigation } from "../../hooks/useNavigation";
-import { useForgotPassword } from "../../hooks/useForgotPassword";
+import { useNavigation } from "../../hooks/navigations/useNavigation";
+import { useForgotPassword } from "../../hooks/auth/useForgotPassword";
 
 export const ForgotPassword = () => {
   const { handleNavigate } = useNavigation();

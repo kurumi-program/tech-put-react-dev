@@ -1,5 +1,5 @@
 import axios from "axios";
-import { forgotPassword } from "../services/authService";
+import { forgotPassword } from "../../services/authService";
 import { useLogin } from "./useLogin";
 
 export const useForgotPassword = () => {

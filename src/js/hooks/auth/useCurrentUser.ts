@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { User } from "../types/auth";
+import { User } from "../../types/auth";
 import { useNavigate } from "react-router-dom";
-import { getCurrentUser } from "../services/authService";
+import { getCurrentUser } from "../../services/authService";
 
 export const useCurrentUser = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
@@ -22,13 +22,12 @@ export const useCurrentUser = () => {
       }
     } catch (error) {
       console.log(error, "予期せぬエラー");
-      debugger;
     }
   };
 
   useEffect(() => {
     handleGetCurrentUser();
-  }, [setCurrentUser]);
+  }, []);
 
   return { isLoggedIn, setIsLoggedIn, currentUser, setCurrentUser, handleGetCurrentUser };
 };

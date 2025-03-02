@@ -1,7 +1,7 @@
 import * as React from "react";
 import { createContext, PropsWithChildren } from "react";
 import { User } from "../types/auth";
-import { useCurrentUser } from "../hooks/useCurrentUser";
+import { useCurrentUser } from "../hooks/auth/useCurrentUser";
 
 type AuthContextType = {
   isLoggedIn: boolean;

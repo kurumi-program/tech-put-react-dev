@@ -2,9 +2,9 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../contexts/AuthContext";
-import { LoginParams } from "../types/auth";
-import { signIn, signUp } from "../services/authService";
+import { AuthContext } from "../../contexts/AuthContext";
+import { LoginParams } from "../../types/auth";
+import { signIn, signUp } from "../../services/authService";
 
 export const useLogin = () => {
   const { setIsLoggedIn, setCurrentUser } = useContext(AuthContext);
@@ -63,7 +63,7 @@ export const useLogin = () => {
         setEmail("");
         setPassword("");
         setPasswordConfirmation("");
-        setGeneralErrors("")
+        setGeneralErrors("");
       }
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {

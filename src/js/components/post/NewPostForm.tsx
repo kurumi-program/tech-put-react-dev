@@ -5,6 +5,8 @@ import draftToHtml from "draftjs-to-html";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"; // スタイルをインポート
 import { FormButton } from "../parts/FormButton";
 import { PostContext } from "../../contexts/PostContext";
+import { client } from "../../services/client";
+import { authHeaders } from "../../services/authService";
 
 type Props = {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -16,7 +18,7 @@ export const NewPostForm = ({ setIsOpen }: Props) => {
   //エラーの時
   const [errorText, setErrorText] = useState<boolean>(false);
 
-  const addPost = () => {
+  const addPost = async () => {
     /* 何も入力していない時エラー表示 */
     const contentState = editorState.getCurrentContent();
     if (!contentState.hasText()) {
@@ -26,12 +28,19 @@ export const NewPostForm = ({ setIsOpen }: Props) => {
 
     const rawContent = convertToRaw(editorState.getCurrentContent()); // DraftJSのデータを取得
     const htmlContent = draftToHtml(rawContent); // HTMLに変換
-    setPostList([...postList, htmlContent]); // 配列に追加
-
-    setEditorState(EditorState.createEmpty()); // エディターをリセット
-    setIsOpen(false);
-    /* 背景スクロール有効 */
-    document.body.classList.remove("over-hidden");
+    try {
+      const res = await client.post("/posts", { content: htmlContent }, { headers: authHeaders() });
+      const post = res.data;
+      if (post) {
+        setPostList([...postList, post.content]); // 配列に追加
+        setEditorState(EditorState.createEmpty()); // エディターをリセット
+        setIsOpen(false);
+        // 背景スクロール有効
+        document.body.classList.remove("over-hidden");
+      }
+    } catch (error) {
+      console.error("予期せぬエラーが発生しました", error);
+    }
   };
 
   const handleImageUpload = (file: File) => {

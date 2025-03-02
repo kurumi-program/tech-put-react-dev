@@ -7,5 +7,5 @@ export const useNavigation = () => {
     navigate(path);
   };
 
-  return { handleNavigate }; 
+  return { handleNavigate };
 };

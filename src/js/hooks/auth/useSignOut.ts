@@ -1,7 +1,7 @@
 import Cookies from "js-cookie";
 import { useContext } from "react";
-import { AuthContext } from "../contexts/AuthContext";
-import { signOut } from "../services/authService";
+import { AuthContext } from "../../contexts/AuthContext";
+import { signOut } from "../../services/authService";
 
 export const useSignOut = () => {
   const { setIsLoggedIn, setCurrentUser } = useContext(AuthContext);

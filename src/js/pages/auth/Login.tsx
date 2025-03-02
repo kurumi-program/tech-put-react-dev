@@ -4,14 +4,13 @@ import { InputArea } from "../../components/header/InputArea";
 import { AuthForm } from "../../components/layout/AuthForm";
 import { AuthSubTextRight } from "../../components/parts/AuthSubTextRight";
 import { AuthFooterButton } from "../../components/parts/AuthFooterButton";
-import { useLogin } from "../../hooks/useLogin";
-import { useNavigation } from "../../hooks/useNavigation";
+import { useLogin } from "../../hooks/auth/useLogin";
+import { useNavigation } from "../../hooks/navigations/useNavigation";
 
 export const Login = () => {
   const { signinErrors, handleSubmit, generalErrors, email, setEmail, password, setPassword } =
     useLogin();
   const { handleNavigate } = useNavigation();
-
 
   return (
     <AuthForm onSubmit={handleSubmit(false)}>

@@ -3,7 +3,7 @@ import { FormButton } from "../../components/parts/FormButton";
 import { AuthForm } from "../../components/layout/AuthForm";
 import { InputArea } from "../../components/header/InputArea";
 import { AuthSubTextRight } from "../../components/parts/AuthSubTextRight";
-import { useResetPassword } from "../../hooks/useResetPassword";
+import { useResetPassword } from "../../hooks/auth/useResetPassword";
 
 export const ResetPassword = () => {
   const {

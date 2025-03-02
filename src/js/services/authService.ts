@@ -46,6 +46,13 @@ export const getCurrentUser = () => {
   });
 };
 
+//ヘッダーの情報を送る
+export const authHeaders = () => ({
+  "access-token": Cookies.get("access_token"),
+  client: Cookies.get("client"),
+  uid: Cookies.get("uid"),
+});
+
 // //google認証
 // export const googleLogin = (token: string) => {
 //   return client.post("/omniauth/google_oauth2/callback", { token });

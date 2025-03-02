@@ -3,8 +3,8 @@ import { FormButton } from "../../components/parts/FormButton";
 import { AuthForm } from "../../components/layout/AuthForm";
 import { AuthFooterButton } from "../../components/parts/AuthFooterButton";
 import React from "react";
-import { useLogin } from "../../hooks/useLogin";
-import { useNavigation } from "../../hooks/useNavigation";
+import { useLogin } from "../../hooks/auth/useLogin";
+import { useNavigation } from "../../hooks/navigations/useNavigation";
 
 export const Signup = () => {
   const {

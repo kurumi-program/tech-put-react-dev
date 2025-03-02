@@ -1,13 +1,16 @@
 import * as React from "react";
-import { useSignOut } from "../../hooks/useSignOut";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useContext } from "react";
-import { useNavigation } from "../../hooks/useNavigation";
+import { useNavigation } from "../../hooks/navigations/useNavigation";
+import { useSignOut } from "../../hooks/auth/useSignOut";
 
 export const Header = () => {
   const { handleSignOut } = useSignOut();
   const { currentUser } = useContext(AuthContext);
   const { handleNavigate } = useNavigation();
+
+  if (currentUser === undefined) return null;
+
   if (currentUser) {
     return (
       <header className="border-b">

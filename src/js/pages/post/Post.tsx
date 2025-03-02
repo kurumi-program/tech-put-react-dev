@@ -4,7 +4,7 @@ import { SidebarRight } from "../../components/sidebar/SidebarRight";
 import { PostList } from "../../components/post/PostList";
 
 export const Post = () => {
-
+ 
   return (
     <div className="layout">
       <SidebarLeft />

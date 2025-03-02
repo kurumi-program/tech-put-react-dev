@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { resetPassword } from "../services/authService";
-import { ResetPassParams } from "../types/auth";
+import { useNavigation } from "../navigations/useNavigation";
 import { useLogin } from "./useLogin";
-import { useNavigation } from "./useNavigation";
+import { resetPassword } from "../../services/authService";
+import { ResetPassParams } from "../../types/auth";
 
 export const useResetPassword = () => {
   const { handleNavigate } = useNavigation();

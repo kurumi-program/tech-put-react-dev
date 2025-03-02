@@ -12,6 +12,9 @@ export const SidebarLeft = () => {
     document.body.classList.add("over-hidden");
     setIsOpen(true);
   };
+
+  if (currentUser === undefined) return null;
+  
   return (
     <>
       {currentUser ? (
