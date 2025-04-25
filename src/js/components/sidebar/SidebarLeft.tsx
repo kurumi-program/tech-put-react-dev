@@ -1,20 +1,23 @@
 import React, { useContext, useState } from "react";
 import { IconList } from "../parts/IconList";
-import { NewForm } from "../../pages/post/NewForm";
 import { IconListSp } from "../parts/IconListSp";
 import { AuthContext } from "../../contexts/AuthContext";
+import { PostEditForm } from "../../pages/post/PostEditForm";
+import { useNavigation } from "../../hooks/utils/useNavigation";
+import { useNoticeSidebar } from "../../hooks/notification/useNoticeSidebar";
+import { useHandleModal } from "../../hooks/utils/useHandleModal";
 
 export const SidebarLeft = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const { currentUser } = useContext(AuthContext);
-  const newFormOpen = () => {
-    /* 背景スクロール無効 */
-    document.body.classList.add("over-hidden");
-    setIsOpen(true);
-  };
+  const [isPostOpen, setIsPostOpen] = useState(false);
+  const { currentUser, isLoading } = useContext(AuthContext);
+  const { handleNavigate } = useNavigation();
+  const { handleBellClick, bellActive } = useNoticeSidebar();
+  const { scrollDisabledAndPostModalOpen } = useHandleModal({
+    setIsPostOpen,
+  });
 
-  if (currentUser === undefined) return null;
-  
+  if (isLoading) return null;
+
   return (
     <>
       {currentUser ? (
@@ -23,16 +26,26 @@ export const SidebarLeft = () => {
             <IconList
               className="sidebar-left sidebar-content"
               home="ホーム"
+              onHomeClick={() => handleNavigate("/")}
               post="投稿する"
+              onPostClick={scrollDisabledAndPostModalOpen}
               bell="通知"
-              favorite="お気に入り"
+              bellActive={bellActive}
+              onNoticeClick={handleBellClick}
+              stock="ストック"
+              onStockClick={() => handleNavigate("/stocks")}
               myPage="マイページ"
-              onPostClick={newFormOpen}
+              onProfileClick={() => handleNavigate("/my-page")}
             />
           </aside>
           <IconListSp
-            onPostClick={newFormOpen}
+            onHomeClick={() => handleNavigate("/")}
+            onPostClick={scrollDisabledAndPostModalOpen}
+            onNoticeClick={() => handleNavigate("/notification")}
+            onStockClick={() => handleNavigate("/stocks")}
+            onProfileClick={() => handleNavigate("/my-page")}
             className="sidebar-sp border-t"
+            bellActive={bellActive}
             register={false}
             login={false}
           />
@@ -43,7 +56,9 @@ export const SidebarLeft = () => {
             <IconList
               className="sidebar-left sidebar-content"
               register="新規登録"
+              onRegisterClick={() => handleNavigate("/signup")}
               login="ログイン"
+              onLoginClick={() => handleNavigate("/signin")}
             />
           </aside>
           <IconListSp
@@ -51,12 +66,12 @@ export const SidebarLeft = () => {
             home={false}
             post={false}
             bell={false}
-            favorite={false}
+            stock={false}
             myPage={false}
           />
         </>
       )}
-      {isOpen && <NewForm setIsOpen={setIsOpen} />}
+      {isPostOpen && <PostEditForm formTitle="新規作成" setIsOpen={setIsPostOpen} />}
     </>
   );
 };

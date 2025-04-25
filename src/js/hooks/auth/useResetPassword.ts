@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useNavigation } from "../navigations/useNavigation";
+import { useNavigation } from "../utils/useNavigation";
 import { useLogin } from "./useLogin";
 import { resetPassword } from "../../services/authService";
 import { ResetPassParams } from "../../types/auth";

@@ -14,11 +14,13 @@ export type ResetPassParams = {
 
 // ユーザー
 export type User = {
-  id: number;
+  id: string;
   uid: string;
   provider: string;
   email: string;
   name: string;
+  username: string;
+  avatarUrl: string | null;
   nickname?: string;
   image?: string;
   allowPasswordChange: boolean;

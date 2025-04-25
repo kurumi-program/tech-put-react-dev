@@ -1,54 +1,45 @@
-import React from "react";
-import { IconList } from "../../components/parts/IconList";
+import React, { useContext, useRef } from "react";
 import { SidebarLeft } from "../../components/sidebar/SidebarLeft";
 import { SidebarRight } from "../../components/sidebar/SidebarRight";
-import { IconAndCount } from "../../components/parts/IconAndCount";
-import { UserCommentParts } from "../../components/parts/UserCommentParts";
-import { CommentAreaForm } from "../../components/parts/CommentAreaForm";
-import { HandleDropDown } from "../../components/parts/HandleDropDown";
-import { IconListSp } from "../../components/parts/IconListSp";
+import { useParams } from "react-router-dom";
+import { usePostData } from "../../hooks/post/usePostData";
+import { PostContext } from "../../contexts/PostContext";
+import { PostShow } from "../../post/PostShow";
+import { scrollToSection } from "../../utils/scrollToSection";
+import { CommentList } from "../../post/CommentList";
+import { getOwner } from "../../utils/getOwner";
+import { CommentPost } from "../../post/CommentPost";
+import { useCommentData } from "../../hooks/comment/useCommentData";
 
 export const PostDetail = () => {
-  const comment =
-    "テキストテキストテキストテキストテキストテキストトテキストテキストテキストテキスト";
+  let { id } = useParams();
+  const { postList } = usePostData();
+  const { isLoading } = useContext(PostContext);
+  const post = postList.find((post) => String(post.id) === String(id));
+  const isPostOwner = getOwner({ post });
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+  const { commentList } = useCommentData(id ?? "");
+  const commentCount = commentList.length;
+
+  if (isLoading) return null;
+
   return (
     <div className="layout">
       <SidebarLeft />
       <main className="main flex-item">
-        <ul className="main-container">
-          <li className="article border">
-            <h1 className="font-bold">Main Content</h1>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vitae urna
-              lectus. Proin non nulla eros. Fusce et metus nec sapien ultricies faucibus.
-            </p>
-            <p>スクロールしても左右のサイドバーは固定されたままになります。</p>
-            <p>スクロールしても左右のサイドバーは固定されたままになります。</p>
-            <p>スクロールしても左右のサイドバーは固定されたままになります。</p>
-            <p>スクロールしても左右のサイドバーは固定されたままになります。</p>
-            <p>スクロールしても左右のサイドバーは固定されたままになります。</p>
-            <p>スクロールしても左右のサイドバーは固定されたままになります。</p>
-            <p>スクロールしても左右のサイドバーは固定されたままになります。</p>
-            <p>...</p>
-            <div className="icons flex items-center mt-3">
-              <IconAndCount className="fa-heart" count={10} />
-              <IconAndCount className="fa-comment" count={12} />
-            </div>
-          </li>
-        </ul>
-        <div className="comment main-container">
-          <h2 className="font-bold">12件のコメント</h2>
-          <CommentAreaForm />
-          <ul>
-            <UserCommentParts userId="@react" comment={comment}>
-              <HandleDropDown remove="削除する" />
-            </UserCommentParts>
-            <UserCommentParts userId="@react" comment={comment} />
-          </ul>
+        <PostShow
+          count={commentCount}
+          scrollToSection={() => scrollToSection({ scrollRef })}
+          post={post}
+          isOwner={isPostOwner}
+        />
+        <div ref={scrollRef} className="comment main-container mb-20">
+          <h2 className="font-bold">{commentCount}件のコメント</h2>
+          <CommentPost postId={id ?? ""} />
+          <CommentList postId={id ?? ""} />
         </div>
       </main>
       <SidebarRight />
-      <IconListSp className="sidebar-sp border-t" register={false} login={false} />
     </div>
   );
 };

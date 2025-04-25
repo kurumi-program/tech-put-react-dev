@@ -1,9 +1,5 @@
-/// <reference lib="dom" />
-
-declare global {
-  interface Window {
-    google: any; // googleオブジェクトをany型として宣言
-  }
+// 画像ファイルの型宣言 (PNGファイル)
+declare module "*.png" {
+  const value: string;
+  export default value;
 }
-
-export {};

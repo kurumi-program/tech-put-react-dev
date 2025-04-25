@@ -48,9 +48,9 @@ export const getCurrentUser = () => {
 
 //ヘッダーの情報を送る
 export const authHeaders = () => ({
-  "access-token": Cookies.get("access_token"),
-  client: Cookies.get("client"),
-  uid: Cookies.get("uid"),
+  "access-token": Cookies.get("_access_token"),
+  client: Cookies.get("_client"),
+  uid: Cookies.get("_uid"),
 });
 
 // //google認証

@@ -5,9 +5,10 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import { LoginParams } from "../../types/auth";
 import { signIn, signUp } from "../../services/authService";
+import { useHandleModal } from "../utils/useHandleModal";
 
 export const useLogin = () => {
-  const { setIsLoggedIn, setCurrentUser } = useContext(AuthContext);
+  const { setIsLoggedIn, setCurrentUser, setFlashMessage } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const [email, setEmail] = useState<string>("");
@@ -23,6 +24,11 @@ export const useLogin = () => {
     password: [],
   });
   const [generalErrors, setGeneralErrors] = useState("");
+
+  const { setIsLoginModalOpen } = useContext(AuthContext);
+  const { scrollValidAndModalClose } = useHandleModal({
+    setIsOpen: setIsLoginModalOpen,
+  });
 
   const handleSubmit = (isSignUp: boolean) => async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -57,8 +63,13 @@ export const useLogin = () => {
         setIsLoggedIn(true);
 
         navigate("/");
-        alert(isSignUp ? "サインアップに成功しました" : "ログインに成功しました");
-        window.location.reload();
+        scrollValidAndModalClose();
+
+        setFlashMessage(isSignUp ? "サインアップに成功しました" : "ログインに成功しました");
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+        console.log("ログイン成功");
 
         setEmail("");
         setPassword("");

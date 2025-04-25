@@ -1,96 +1,102 @@
 import * as React from "react";
-import { IconList } from "../../components/parts/IconList";
 import { SidebarLeft } from "../../components/sidebar/SidebarLeft";
 import { SidebarRight } from "../../components/sidebar/SidebarRight";
-import { UserParts } from "../../components/parts/UserParts";
-import { FormButton } from "../../components/parts/FormButton";
 import { IconListSp } from "../../components/parts/IconListSp";
+import { useProfileData } from "../../hooks/profile/useProfileData";
+import { useRef, useState } from "react";
+import { useHandleModal } from "../../hooks/utils/useHandleModal";
+import { ProfileEditForm } from "./ProfileEditForm";
+import { ProfileLayout } from "../../post/ProfileLayout";
+import { ProfilePostList } from "../../post/ProfilePostList";
+import { PostEditForm } from "./PostEditForm";
+import { ProfileLikedPostList } from "../../post/ProfileLikedPostList";
+import { scrollToSection } from "../../utils/scrollToSection";
+import { useNavigation } from "../../hooks/utils/useNavigation";
 
 export const Profile = () => {
+  const [isEditOpen, setIsEditOpen] = useState<boolean>(false);
+  const [isPostOpen, setIsPostOpen] = useState<boolean>(false);
+  const [activeTab, setActiveTab] = useState<string>("all");
+  const { profile, isProfileLoading } = useProfileData();
+  const scrollRef = useRef<HTMLUListElement>(null);
+  const {
+    scrollDisabledAndPostModalOpen,
+    scrollDisabledAndEditModalOpen,
+    scrollValidAndEditModalClose,
+  } = useHandleModal({
+    setIsPostOpen: setIsPostOpen,
+    setIsEditOpen: setIsEditOpen,
+  });
+  const { handleNavigate } = useNavigation();
+
+  if (isProfileLoading) return null;
+
+  const handleTabClick = (tab: string) => {
+    setActiveTab(tab);
+  };
   return (
     <div className="layout">
       <SidebarLeft />
-      <main className="main flex-item">
-        <div className="article border main-container">
-          <div className="text-center">
-            <div className="circle circle-profile"></div>
+      <ProfileLayout
+        userAvatarUrl={profile?.avatarUrl}
+        userName={profile?.userName}
+        userEmail={profile?.email}
+        userUserName={profile?.userUserName}
+        userPostCount={profile?.postCount}
+        userBio={profile?.bio}
+        onModalClick={scrollDisabledAndEditModalOpen}
+        myPage={true}
+        onPostClick={() => scrollToSection({ scrollRef })}
+        followingsCount={profile?.followingsCount}
+        followersCount={profile?.followersCount}
+        handleFollowingsClick={() => handleNavigate("/my-page/following")}
+        handleFollowersClick={() => handleNavigate("/my-page/followers")}
+      >
+        <ul className="main-container" ref={scrollRef}>
+          <div className="flex tab-pointer">
+            <h2
+              className={`font-bold articles-title ml-1 ${activeTab === "all" && "tab-active"}`}
+              onClick={() => handleTabClick("all")}
+            >
+              All
+            </h2>
+            <h2
+              className={`font-bold articles-title ml-4 ${activeTab === "liked" && "tab-active"}`}
+              onClick={() => handleTabClick("liked")}
+            >
+              いいね
+            </h2>
           </div>
-          <UserParts
-            classNameWrapper="justify-center"
-            className="text-center"
-            userClassName="profile-user-name font-bold"
-            userIdClassName="profile-user-id"
-            userName="React"
-            userId="@react24"
-            hasCircle={false}
-          />
-          <ul className="pt-4 mt-8 stat-item text-center border-t flex">
-            <li>
-              <p className="stat-number">4</p>
-              <p className="stat-label">投稿数</p>
-            </li>
-            <li>
-              <p className="stat-number">3</p>
-              <p className="stat-label">フォロー</p>
-            </li>
-            <li>
-              <p className="stat-number">4</p>
-              <p className="stat-label">フォロワー</p>
-            </li>
-          </ul>
-          <div className="profile-description">
-            <p>
-              テキストテキストテキストテキストテキストテキスト
-              テキストテキストテキストテキストテキストテキスト
-            </p>
-          </div>
-          <div className="text-center">
-            <FormButton className="rounded edit-btn">プロフィールを編集する</FormButton>
-          </div>
-        </div>
-
-        <ul className="main-container">
-          <h2 className="font-bold articles-title ml-1">投稿した記事</h2>
-          <li className="article border">
-            <h1 className="font-bold">Main Content</h1>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vitae urna
-              lectus. Proin non nulla eros. Fusce et metus nec sapien ultricies faucibus.
-            </p>
-            <p>スクロールしても左右のサイドバーは固定されたままになります。</p>
-            <p>...</p>
-          </li>
-          <li className="article border">
-            <h1 className="font-bold">Main Content</h1>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vitae urna
-              lectus. Proin non nulla eros. Fusce et metus nec sapien ultricies faucibus.
-            </p>
-            <p>スクロールしても左右のサイドバーは固定されたままになります。</p>
-            <p>...</p>
-          </li>
-          <li className="article border">
-            <h1 className="font-bold">Main Content</h1>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vitae urna
-              lectus. Proin non nulla eros. Fusce et metus nec sapien ultricies faucibus.
-            </p>
-            <p>スクロールしても左右のサイドバーは固定されたままになります。</p>
-            <p>...</p>
-          </li>
-          <li className="article border">
-            <h1 className="font-bold">Main Content</h1>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vitae urna
-              lectus. Proin non nulla eros. Fusce et metus nec sapien ultricies faucibus.
-            </p>
-            <p>スクロールしても左右のサイドバーは固定されたままになります。</p>
-            <p>...</p>
-          </li>
+          {activeTab === "all" ? (
+            <>
+              {profile && Number(profile.postCount) > 0 ? (
+                <ProfilePostList />
+              ) : (
+                <p
+                  className="ml-1 mt-7 no-post-profile-title btn"
+                  onClick={scrollDisabledAndPostModalOpen}
+                >
+                  記事を作成してみよう！
+                </p>
+              )}
+            </>
+          ) : (
+            <>
+              {profile && profile?.likedCount > 0 ? (
+                <ProfileLikedPostList />
+              ) : (
+                <p className="mt-8">いいねはありません</p>
+              )}
+            </>
+          )}
         </ul>
-      </main>
+      </ProfileLayout>
       <SidebarRight />
       <IconListSp className="sidebar-sp border-t" register={false} login={false} />
+      {isEditOpen && (
+        <ProfileEditForm setIsEditOpen={setIsEditOpen} onClick={scrollValidAndEditModalClose} />
+      )}
+      {isPostOpen && <PostEditForm formTitle="新規作成" setIsOpen={setIsPostOpen} />}
     </div>
   );
 };

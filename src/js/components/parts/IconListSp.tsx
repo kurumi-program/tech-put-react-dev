@@ -5,11 +5,18 @@ type Props = {
   home?: boolean;
   post?: boolean;
   bell?: boolean;
-  favorite?: boolean;
+  stock?: boolean;
   myPage?: boolean;
   register?: boolean;
   login?: boolean;
+  bellActive?: boolean;
   onPostClick?: () => void;
+  onHomeClick?: () => void;
+  onNoticeClick?: () => void;
+  onStockClick?: () => void;
+  onProfileClick?: () => void;
+  onRegisterClick?: () => void;
+  onLoginClick?: () => void;
 };
 
 export const IconListSp = ({
@@ -17,46 +24,53 @@ export const IconListSp = ({
   home = true,
   post = true,
   bell = true,
-  favorite = true,
+  stock = true,
   myPage = true,
   register = true,
   login = true,
+  bellActive,
   onPostClick,
+  onHomeClick,
+  onNoticeClick,
+  onStockClick,
+  onProfileClick,
+  onRegisterClick,
+  onLoginClick,
 }: Props) => {
   return (
     <ul className={className}>
       {home && (
-        <li>
+        <li onClick={onHomeClick}>
           <i className="fa-solid fa-house side-icon"></i>
         </li>
       )}
       {post && (
-        <li>
-          <i className="fa-solid fa-pen side-icon" onClick={onPostClick}></i>
+        <li onClick={onPostClick}>
+          <i className="fa-solid fa-pen side-icon"></i>
         </li>
       )}
       {bell && (
-        <li>
-          <i className="fa-solid fa-bell side-icon bell-active"></i>
+        <li onClick={onNoticeClick}>
+          <i className={`fa-solid fa-bell side-icon ${bellActive ? "bell-active" : ""}`}></i>
         </li>
       )}
-      {favorite && (
-        <li>
+      {stock && (
+        <li onClick={onStockClick}>
           <i className="fa-solid fa-star side-icon"></i>
         </li>
       )}
       {myPage && (
-        <li>
+        <li onClick={onProfileClick}>
           <i className="fa-solid fa-user side-icon"></i>
         </li>
       )}
       {register && (
-        <li>
+        <li onClick={onRegisterClick}>
           <i className="fa-solid fa-user-plus"></i>
         </li>
       )}
       {login && (
-        <li>
+        <li onClick={onLoginClick}>
           <i className="fa-solid fa-unlock"></i>
         </li>
       )}

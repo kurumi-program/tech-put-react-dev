@@ -2,9 +2,11 @@ import Cookies from "js-cookie";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { signOut } from "../../services/authService";
+import { useNavigate } from "react-router";
 
 export const useSignOut = () => {
   const { setIsLoggedIn, setCurrentUser } = useContext(AuthContext);
+  const navigate = useNavigate();
   const handleSignOut = async () => {
     try {
       const res = await signOut();
@@ -19,6 +21,7 @@ export const useSignOut = () => {
         setCurrentUser(undefined);
 
         console.log("サインアウトに成功");
+        navigate("/signin");
         window.location.reload();
       } else {
         console.log("サインアウトに失敗");

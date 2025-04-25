@@ -6,8 +6,4 @@ import "../css/tailwind.css";
 import { PostProvider } from "./contexts/PostContext";
 
 const root = createRoot(document.getElementById("root")!);
-root.render(
-  <PostProvider>
-    <App />
-  </PostProvider>,
-);
+root.render(<App />);

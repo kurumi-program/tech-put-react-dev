@@ -34,6 +34,10 @@ module.exports = {
         test: /(\.ts|\.tsx)$/,
         use: "ts-loader",
       },
+      {
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        type: "asset/resource", // ← これを追加
+      },
     ],
   },
   plugins: [
