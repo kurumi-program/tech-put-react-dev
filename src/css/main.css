@@ -12,6 +12,7 @@
   --color-white: #fff;
   --border-color: #e5e7eb;
   --black-color: #000000;
+  --black-color-opacity: rgba(0, 0, 0, 0.5);
   --red-color: red;
   --pink-color: rgb(225, 49, 84);
   --blue-color: rgb(48, 82, 136);
@@ -514,7 +515,7 @@ header {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: var(--black-color-opacity);
   justify-content: center;
   align-items: center;
   z-index: 100;
@@ -1345,7 +1346,13 @@ textarea:focus {
 }
 
 .pt-legal {
-  padding-top: 30px;
+  padding-top: 50px;
+}
+
+@media (max-width: 767px) {
+  .pt-legal {
+    padding-top: 30px;
+  }
 }
 
 /* 学習ボタン */
@@ -1366,4 +1373,66 @@ textarea:focus {
 .learn-button-active {
   background: var(--blue-color);
   color: var(--color-white);
+}
+
+/* 画像拡大処理 */
+.image-max-bg {
+  background: var(--black-color);
+}
+
+.image-max-bg-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.click-modal-icon {
+  position: absolute;
+  cursor: pointer;
+}
+
+.click-modal-icon-wrapper {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--black-color-opacity);
+}
+
+.click-modal-icon-wrapper i {
+  color: #fff;
+  font-size: 25px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.icon-close {
+  right: 10px;
+  top: 10px;
+}
+
+.arrow-icon {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.image-max-next {
+  right: 10px;
+}
+
+.image-max-prev {
+  left: 10px;
+}
+
+.image-max {
+  display: inline-block;
+}
+
+.image-modal-content {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  align-items: center;
 }

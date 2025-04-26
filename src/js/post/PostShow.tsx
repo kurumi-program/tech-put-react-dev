@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { IconAndCount } from "../components/parts/IconAndCount";
 import { UserInfo } from "../user/UserInfo";
 import { useDeletePost } from "../hooks/post/useDeletePost";
@@ -11,6 +11,7 @@ import { useLike } from "../hooks/like/useLike";
 import { getLikeStatus } from "../utils/getLikeStatus";
 import { getStockStatus } from "../utils/getStockStatus";
 import { useStock } from "../hooks/stock/useStock";
+import { PostImageModal } from "./PostImageModal";
 
 type Props = {
   post: Post | undefined;
@@ -23,6 +24,7 @@ export const PostShow = ({ count, post, isOwner, scrollToSection }: Props) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [openDropdownId, setOpenDropdownId] = useState<string | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
+
   const { deletePost } = useDeletePost();
   const { handleLikePost, handleLikeDelete, postLikes } = useLike({ postId: post?.id ?? "" });
   const { isLiked, likeCount } = getLikeStatus({ postId: post?.id ?? "", postLikes });
@@ -32,7 +34,6 @@ export const PostShow = ({ count, post, isOwner, scrollToSection }: Props) => {
   const { isStocked } = getStockStatus({ postId: post?.id ?? "", postStocks });
 
   const editFormOpen = () => {
-    /* 背景スクロール無効 */
     document.body.classList.add("over-hidden");
     setIsModalOpen(true);
     setOpenDropdownId(null);
@@ -65,7 +66,10 @@ export const PostShow = ({ count, post, isOwner, scrollToSection }: Props) => {
               />
             )}
           </div>
-          <div className="mt-3" dangerouslySetInnerHTML={{ __html: post?.content || "" }} />
+          <div
+            className="mt-3 post-content"
+            dangerouslySetInnerHTML={{ __html: post?.content || "" }}
+          />
           <div className="icons flex items-center mt-3">
             <IconAndCount
               onClick={() => {
@@ -99,6 +103,7 @@ export const PostShow = ({ count, post, isOwner, scrollToSection }: Props) => {
           initialContent={post?.content}
         />
       )}
+      {post && <PostImageModal post={post} />}
     </>
   );
 };
