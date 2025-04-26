@@ -6,8 +6,9 @@ export type Profile = {
   email: string;
   bio: string;
   avatarUrl: string | null;
-  postCount: string;
+  postCount: number;
   hasLikedPosts: boolean;
+  learnCount: number;
   likedCount: number;
   hasPosts: boolean;
   followingsCount: number;

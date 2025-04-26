@@ -6,24 +6,53 @@ import { authHeaders } from "../../services/authService";
 import { client } from "../../services/client";
 import { useNavigate } from "react-router-dom";
 import { ProfileContext } from "../../contexts/ProfileContext";
+import { postLearnTemplate } from "../../post/postLearnTemplate";
 
-export const usePostEdit = (postId?: string, initialContent?: string, closeModal?: () => void) => {
+export const usePostEdit = (
+  postId?: string,
+  initialContent?: string,
+  closeModal?: () => void,
+  initialLearn: boolean = false,
+) => {
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const [errorText, setErrorText] = useState(false);
+  const [isLearn, setIsLearn] = useState(initialLearn);
+
   const { postList, setPostList } = useContext(PostContext);
-  const navigate = useNavigate();
   const { profilePostList, setProfilePostList } = useContext(ProfileContext);
+  const navigate = useNavigate();
+
+  const createEditorStateFromHTML = (html: string) => {
+    const blocksFromHTML = convertFromHTML(html);
+    const contentState = ContentState.createFromBlockArray(
+      blocksFromHTML.contentBlocks,
+      blocksFromHTML.entityMap,
+    );
+    return EditorState.createWithContent(contentState);
+  };
 
   useEffect(() => {
     if (postId && initialContent) {
-      const blocksFromHTML = convertFromHTML(initialContent);
-      const contentState = ContentState.createFromBlockArray(
-        blocksFromHTML.contentBlocks,
-        blocksFromHTML.entityMap,
-      );
-      setEditorState(EditorState.createWithContent(contentState));
+      setEditorState(createEditorStateFromHTML(initialContent));
     }
   }, [postId, initialContent]);
+
+  //学習の場合のクリック操作
+  const handleLearnClick = () => {
+    setIsLearn(!isLearn);
+
+    if (!isLearn) {
+      setEditorState(createEditorStateFromHTML(postLearnTemplate));
+    } else {
+      if (initialContent) {
+        //編集時
+        setEditorState(createEditorStateFromHTML(initialContent));
+      } else {
+        //新規作成時
+        setEditorState(EditorState.createEmpty());
+      }
+    }
+  };
 
   const handlePost = async () => {
     const contentState = editorState.getCurrentContent();
@@ -36,30 +65,35 @@ export const usePostEdit = (postId?: string, initialContent?: string, closeModal
     const htmlContent = draftToHtml(rawContent);
 
     try {
-      //更新
       if (postId) {
+        // 編集
         const res = await client.put(
           `/posts/${postId}`,
-          { content: htmlContent },
+          { content: htmlContent, learn: isLearn },
           { headers: authHeaders() },
         );
         const updatedPost = res.data;
+
         setPostList(
           postList.map((post) =>
-            post.id === postId ? { ...post, content: updatedPost.content } : post,
+            post.id === postId
+              ? { ...post, content: updatedPost.content, learn: updatedPost.learn }
+              : post,
           ),
         );
-        //プロフィールにある記事の更新処理
+
         setProfilePostList(
           profilePostList.map((post) =>
-            post.id === postId ? { ...post, content: updatedPost.content } : post,
+            post.id === postId
+              ? { ...post, content: updatedPost.content, learn: updatedPost.learn }
+              : post,
           ),
         );
       } else {
-        //新規作成
+        // 新規投稿
         const res = await client.post(
           "/posts",
-          { content: htmlContent },
+          { content: htmlContent, learn: isLearn },
           { headers: authHeaders() },
         );
         setPostList((prev) => [res.data, ...prev]);
@@ -87,6 +121,9 @@ export const usePostEdit = (postId?: string, initialContent?: string, closeModal
     setEditorState,
     errorText,
     handlePost,
+    handleLearnClick,
     handleImageUpload,
+    isLearn,
+    setIsLearn,
   };
 };

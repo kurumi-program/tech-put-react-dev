@@ -9,7 +9,7 @@ type Props = {
   userName?: string | null;
   userEmail?: string;
   userUserName?: string;
-  userPostCount?: string;
+  userPostCount?: number;
   userBio?: string;
   myPage?: boolean;
   onModalClick?: () => void;

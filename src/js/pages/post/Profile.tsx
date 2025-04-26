@@ -7,11 +7,10 @@ import { useRef, useState } from "react";
 import { useHandleModal } from "../../hooks/utils/useHandleModal";
 import { ProfileEditForm } from "./ProfileEditForm";
 import { ProfileLayout } from "../../post/ProfileLayout";
-import { ProfilePostList } from "../../post/ProfilePostList";
 import { PostEditForm } from "./PostEditForm";
-import { ProfileLikedPostList } from "../../post/ProfileLikedPostList";
 import { scrollToSection } from "../../utils/scrollToSection";
 import { useNavigation } from "../../hooks/utils/useNavigation";
+import { ProfileTabContent } from "../../post/ProfileTabContent";
 
 export const Profile = () => {
   const [isEditOpen, setIsEditOpen] = useState<boolean>(false);
@@ -61,33 +60,24 @@ export const Profile = () => {
               All
             </h2>
             <h2
-              className={`font-bold articles-title ml-4 ${activeTab === "liked" && "tab-active"}`}
+              className={`font-bold articles-title ml-5 ${activeTab === "learn" && "tab-active"}`}
+              onClick={() => handleTabClick("learn")}
+            >
+              学習
+            </h2>
+            <h2
+              className={`font-bold articles-title ml-5 ${activeTab === "liked" && "tab-active"}`}
               onClick={() => handleTabClick("liked")}
             >
               いいね
             </h2>
           </div>
-          {activeTab === "all" ? (
-            <>
-              {profile && Number(profile.postCount) > 0 ? (
-                <ProfilePostList />
-              ) : (
-                <p
-                  className="ml-1 mt-7 no-post-profile-title btn"
-                  onClick={scrollDisabledAndPostModalOpen}
-                >
-                  記事を作成してみよう！
-                </p>
-              )}
-            </>
-          ) : (
-            <>
-              {profile && profile?.likedCount > 0 ? (
-                <ProfileLikedPostList />
-              ) : (
-                <p className="mt-8">いいねはありません</p>
-              )}
-            </>
+          {profile && (
+            <ProfileTabContent
+              activeTab={activeTab}
+              profile={profile}
+              scrollDisabledAndPostModalOpen={scrollDisabledAndPostModalOpen}
+            />
           )}
         </ul>
       </ProfileLayout>

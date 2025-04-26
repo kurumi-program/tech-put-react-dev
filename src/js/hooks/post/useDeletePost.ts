@@ -9,7 +9,13 @@ import { ProfileContext } from "../../contexts/ProfileContext";
 export const useDeletePost = () => {
   const { handleNavigate } = useNavigation();
   const { setPostList } = useContext(PostContext);
-  const { profile, setProfile, setProfilePostList } = useContext(ProfileContext);
+  const {
+    profile,
+    setProfile,
+    setProfilePostList,
+    setProfileLearnPostList,
+    setProfileLikedPostList,
+  } = useContext(ProfileContext);
   const location = useLocation();
   const deletePost = async (postId: string) => {
     if (!window.confirm("この投稿を削除しますか？")) return;
@@ -21,10 +27,18 @@ export const useDeletePost = () => {
         setProfilePostList((prevProfilePostList) =>
           prevProfilePostList.filter((post) => post.id !== postId),
         );
+        //プロフィールにある学習記事の削除処理
+        setProfileLearnPostList((prevProfileLearnPostList) =>
+          prevProfileLearnPostList.filter((post) => post.id !== postId),
+        );
+        //プロフィールにあるいいね記事の削除処理
+        setProfileLikedPostList((prevProfileLikedPostList) =>
+          prevProfileLikedPostList.filter((post) => post.id !== postId),
+        );
 
         if (profile) {
-          const updatedCount = Number(profile.postCount) - 1;
-          setProfile({ ...profile, postCount: String(updatedCount) });
+          const updatedCount = profile.postCount - 1;
+          setProfile({ ...profile, postCount: updatedCount });
         }
 
         if (location.pathname === `/post-detail/${postId}`) {

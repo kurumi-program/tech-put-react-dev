@@ -11,6 +11,8 @@ export const useProfileData = () => {
     setProfilePostList,
     profileLikedPostList,
     setProfileLikedPostList,
+    profileLearnPostList,
+    setProfileLearnPostList,
     isProfileLoading,
     setIsProfileLoading,
   } = useContext(ProfileContext);
@@ -22,6 +24,7 @@ export const useProfileData = () => {
         setProfile(res.data);
         setProfilePostList(res.data.post);
         setProfileLikedPostList(res.data.likedPost);
+        setProfileLearnPostList(res.data.learnPost);
       }
     } catch (e) {
       console.error("プロフィールの取得に失敗しました", e);
@@ -40,6 +43,7 @@ export const useProfileData = () => {
     profilePostList,
     setProfilePostList,
     profileLikedPostList,
+    profileLearnPostList,
     setProfileLikedPostList,
     isProfileLoading,
   };

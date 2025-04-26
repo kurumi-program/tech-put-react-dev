@@ -17,6 +17,8 @@ type ProfileContextType = {
   setProfilePostList: React.Dispatch<React.SetStateAction<Post[]>>;
   profileLikedPostList: Post[];
   setProfileLikedPostList: React.Dispatch<React.SetStateAction<Post[]>>;
+  profileLearnPostList: Post[];
+  setProfileLearnPostList: React.Dispatch<React.SetStateAction<Post[]>>;
   userPostList: Post[];
   setUserPostList: React.Dispatch<React.SetStateAction<Post[]>>;
 };
@@ -34,6 +36,8 @@ export const ProfileContext = createContext<ProfileContextType>({
   setProfilePostList: () => {},
   profileLikedPostList: [],
   setProfileLikedPostList: () => {},
+  profileLearnPostList: [],
+  setProfileLearnPostList: () => {},
   userPostList: [],
   setUserPostList: () => {},
 });
@@ -45,6 +49,7 @@ export const ProfileProvider = ({ children }: PropsWithChildren) => {
   const [isUserProfileLoading, setIsUserProfileLoading] = useState<boolean>(true);
   const [profilePostList, setProfilePostList] = useState<Post[]>([]);
   const [profileLikedPostList, setProfileLikedPostList] = useState<Post[]>([]);
+  const [profileLearnPostList, setProfileLearnPostList] = useState<Post[]>([]);
   const [userPostList, setUserPostList] = useState<Post[]>([]);
 
   return (
@@ -62,6 +67,8 @@ export const ProfileProvider = ({ children }: PropsWithChildren) => {
         setProfilePostList,
         profileLikedPostList,
         setProfileLikedPostList,
+        profileLearnPostList,
+        setProfileLearnPostList,
         userPostList,
         setUserPostList,
       }}

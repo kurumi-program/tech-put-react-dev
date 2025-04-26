@@ -14,6 +14,7 @@
   --black-color: #000000;
   --red-color: red;
   --pink-color: rgb(225, 49, 84);
+  --blue-color: rgb(48, 82, 136);
 }
 
 /* common */
@@ -1345,4 +1346,24 @@ textarea:focus {
 
 .pt-legal {
   padding-top: 30px;
+}
+
+/* 学習ボタン */
+.learn-button {
+  cursor: pointer;
+  padding: 6px 16px;
+  max-width: 100%;
+  font-weight: bold;
+  transition: all 0.5s;
+  border: 1px solid var(--border-color);
+}
+
+.learn-button:hover {
+  background: var(--blue-color);
+  color: var(--color-white);
+}
+
+.learn-button-active {
+  background: var(--blue-color);
+  color: var(--color-white);
 }

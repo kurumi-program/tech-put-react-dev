@@ -10,10 +10,6 @@ type Props = {
 export const UserInfo = ({ post }: Props) => {
   const userName = getUserName({ post });
   const userUserName = post?.userUserName;
-  const formatDate = (dateString: string | undefined) => {
-    if (!dateString) return "unknown";
-    return new Date(dateString).toLocaleDateString("ja-JP");
-  };
 
   return (
     <UserPost
@@ -21,7 +17,7 @@ export const UserInfo = ({ post }: Props) => {
       userId={post?.userId}
       userUserName={userUserName}
       userName={userName}
-      createdAt={formatDate(post?.createdAt)}
+      createdAt={post?.createdAt}
     />
   );
 };
