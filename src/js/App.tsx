@@ -30,7 +30,7 @@ import { Help } from "./pages/legal/Help";
 
 export const App = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <AuthProvider>
         <ProfileProvider>
           <PostProvider>
