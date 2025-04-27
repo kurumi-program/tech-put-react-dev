@@ -30945,7 +30945,7 @@ __webpack_require__.r(__webpack_exports__);
     if(true) {
       (function() {
         var localsJsonString = undefined;
-        // 1745764722671
+        // 1745765453671
         var cssReload = __webpack_require__(/*! ../../node_modules/mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js */ "./node_modules/mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js")(module.id, {});
         // only invalidate when locals change
         if (
@@ -80281,7 +80281,7 @@ var Terms_1 = __webpack_require__(/*! ./pages/legal/Terms */ "./src/js/pages/leg
 var Privacy_1 = __webpack_require__(/*! ./pages/legal/Privacy */ "./src/js/pages/legal/Privacy.tsx");
 var Help_1 = __webpack_require__(/*! ./pages/legal/Help */ "./src/js/pages/legal/Help.tsx");
 var App = function () {
-    return (React.createElement(react_router_dom_1.BrowserRouter, { basename: process.env.PUBLIC_URL },
+    return (React.createElement(react_router_dom_1.BrowserRouter, null,
         React.createElement(AuthContext_1.AuthProvider, null,
             React.createElement(ProfileContext_1.ProfileProvider, null,
                 React.createElement(PostContext_1.PostProvider, null,
@@ -101504,7 +101504,7 @@ function __rewriteRelativeImportExtension(path, preserveJsx) {
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("11de3aa3335e78556416")
+/******/ 		__webpack_require__.h = () => ("b85a9a6b9439edfa3ca6")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
