@@ -68,6 +68,8 @@ export const SidebarLeft = () => {
             bell={false}
             stock={false}
             myPage={false}
+            onRegisterClick={() => handleNavigate("/signup")}
+            onLoginClick={() => handleNavigate("/signin")}
           />
         </>
       )}

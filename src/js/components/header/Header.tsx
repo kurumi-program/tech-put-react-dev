@@ -16,7 +16,11 @@ export const Header = () => {
     return (
       <header className="border-b">
         <div className="flex header-container justify-between">
-          <h1 className="py-3 header-logo btn" onClick={() => handleNavigate("/")}>
+          <h1
+            translate="no"
+            className="py-3 header-logo btn logo"
+            onClick={() => handleNavigate("/")}
+          >
             TechPut
           </h1>
           <div className="search">

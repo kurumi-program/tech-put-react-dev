@@ -26,6 +26,7 @@ import { Search } from "./pages/post/Search";
 import { NotFound } from "./pages/post/NotFound";
 import { Terms } from "./pages/legal/Terms";
 import { Privacy } from "./pages/legal/Privacy";
+import { Help } from "./pages/legal/Help";
 
 export const App = () => {
   return (
@@ -41,6 +42,7 @@ export const App = () => {
                   <Route path="*" element={<NotFound />} />
                   <Route path="/terms" element={<Terms />} />
                   <Route path="/privacy" element={<Privacy />} />
+                  <Route path="/help" element={<Help />} />
 
                   {/* ログインしている場合 */}
                   <Route element={<PrivateRoute />}>

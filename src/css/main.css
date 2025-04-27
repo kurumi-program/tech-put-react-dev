@@ -102,6 +102,7 @@ header {
 .logo {
   color: var(--primary-color);
   font-weight: bold;
+  font-family: "Public Sans", sans-serif;
 }
 
 .header-logo {

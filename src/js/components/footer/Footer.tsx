@@ -14,6 +14,9 @@ export const Footer = ({ className }: Props) => {
       <Link className="hover-underline" to="/privacy">
         プライバシーポリシー
       </Link>
+      <Link className="hover-underline" to="/help">
+        ヘルプ
+      </Link>
       <p>© 2025 TechPut</p>
     </div>
   );
