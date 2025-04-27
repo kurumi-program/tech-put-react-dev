@@ -1,5 +1,17 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const webpack = require("webpack");
+const dotenv = require("dotenv");
+const path = require("path");
+
+// .envファイルを読み込む
+const env = dotenv.config().parsed || {};
+
+// process.env.KEY形式に変換
+const envKeys = Object.keys(env).reduce((prev, next) => {
+  prev[`process.env.${next}`] = JSON.stringify(env[next]);
+  return prev;
+}, {});
 
 module.exports = {
   entry: "./src/js/index.tsx",
@@ -36,7 +48,7 @@ module.exports = {
       },
       {
         test: /\.(png|jpe?g|gif|svg)$/i,
-        type: "asset/resource", // ← これを追加
+        type: "asset/resource",
       },
     ],
   },
@@ -45,6 +57,7 @@ module.exports = {
       template: "./src/index.html",
     }),
     new MiniCssExtractPlugin(),
+    new webpack.DefinePlugin(envKeys), // ← ここを追加！！
   ],
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
