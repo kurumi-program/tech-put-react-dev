@@ -1,3 +1,6 @@
+/*!***********************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css ***!
+  \***********************************************************************************************************************************************************/
 .rdw-option-wrapper {
   border: 1px solid #F1F1F1;
   padding: 5px;
@@ -879,6 +882,9 @@
 
 
 /*# sourceMappingURL=react-draft-wysiwyg.css.map*/
+/*!**************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./src/css/main.css ***!
+  \**************************************************************************************************************/
 :root {
   --primary-color: #2eb4d5;
   --sky-blue: #dbf8ff;
@@ -1451,7 +1457,7 @@ header {
 }
 .form-button {
   cursor: pointer;
-  padding: 6px 16px;
+  padding: 8px 16px;
   max-width: 100%;
   border: none;
   color: var(--color-white);
@@ -1875,6 +1881,7 @@ header {
   margin-top: 30px;
   border-radius: 50px;
   font-size: 15px;
+  padding: 8px 16px;
 }
 
 @media (max-width: 499px) {
@@ -1979,7 +1986,7 @@ header {
 .flash-msg {
   background: var(--sky-blue);
   width: 600px;
-  max-width: 100%;
+  max-width: 90%;
   position: fixed;
   top: 10px;
   left: 50%;
@@ -2319,6 +2326,9 @@ textarea:focus {
   align-items: center;
 }
 
+/*!******************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./src/css/tailwind.css ***!
+  \******************************************************************************************************************/
 *, ::before, ::after {
   --tw-border-spacing-x: 0;
   --tw-border-spacing-y: 0;
