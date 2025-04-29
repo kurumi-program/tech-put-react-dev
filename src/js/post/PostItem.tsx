@@ -15,7 +15,7 @@ type Props = {
 
 export const PostItem = ({ post }: Props) => {
   const { handleNavigate } = useNavigation();
-  const { currentUser } = useCurrentUser();
+  const { currentUser } = useContext(AuthContext);
   const { handleLikePost, handleLikeDelete, postLikes } = useLike({ postId: post.id });
   const { isLiked, likeCount } = getLikeStatus({ postId: post.id, postLikes });
   const { setIsLoginModalOpen } = useContext(AuthContext);
@@ -27,7 +27,7 @@ export const PostItem = ({ post }: Props) => {
     <li
       className="article border cursor-pointer btn"
       onClick={() => {
-        currentUser ? handleNavigate(`/post-detail/${post.id}`) : scrollDisabledAndModalOpen();
+        !currentUser ? scrollDisabledAndModalOpen() : handleNavigate(`/post-detail/${post.id}`);
       }}
     >
       {post && <UserInfo post={post} />}

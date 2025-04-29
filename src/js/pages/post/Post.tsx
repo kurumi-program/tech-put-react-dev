@@ -4,13 +4,12 @@ import { SidebarRight } from "../../components/sidebar/SidebarRight";
 import { PostList } from "../../post/PostList";
 import { FlashMessage } from "../../components/parts/FlashMessage";
 import { AuthContext } from "../../contexts/AuthContext";
-import { useContext, useState } from "react";
-import { useCurrentUser } from "../../hooks/auth/useCurrentUser";
+import { useContext } from "react";
 import { LoginModal } from "../auth/LoginModal";
 
 export const Post = () => {
   const { flashMessage } = useContext(AuthContext);
-  const { currentUser } = useCurrentUser();
+  const { currentUser } = useContext(AuthContext);
   const { isLoginModalOpen } = useContext(AuthContext);
   return (
     <div className="layout">

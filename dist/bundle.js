@@ -30945,7 +30945,7 @@ __webpack_require__.r(__webpack_exports__);
     if(true) {
       (function() {
         var localsJsonString = undefined;
-        // 1745942764568
+        // 1745942894837
         var cssReload = __webpack_require__(/*! ../../node_modules/mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js */ "./node_modules/mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js")(module.id, {});
         // only invalidate when locals change
         if (
@@ -85724,11 +85724,10 @@ var PostList_1 = __webpack_require__(/*! ../../post/PostList */ "./src/js/post/P
 var FlashMessage_1 = __webpack_require__(/*! ../../components/parts/FlashMessage */ "./src/js/components/parts/FlashMessage.tsx");
 var AuthContext_1 = __webpack_require__(/*! ../../contexts/AuthContext */ "./src/js/contexts/AuthContext.tsx");
 var react_1 = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var useCurrentUser_1 = __webpack_require__(/*! ../../hooks/auth/useCurrentUser */ "./src/js/hooks/auth/useCurrentUser.ts");
 var LoginModal_1 = __webpack_require__(/*! ../auth/LoginModal */ "./src/js/pages/auth/LoginModal.tsx");
 var Post = function () {
     var flashMessage = (0, react_1.useContext)(AuthContext_1.AuthContext).flashMessage;
-    var currentUser = (0, useCurrentUser_1.useCurrentUser)().currentUser;
+    var currentUser = (0, react_1.useContext)(AuthContext_1.AuthContext).currentUser;
     var isLoginModalOpen = (0, react_1.useContext)(AuthContext_1.AuthContext).isLoginModalOpen;
     return (React.createElement("div", { className: "layout" },
         React.createElement(FlashMessage_1.FlashMessage, { message: flashMessage }),
@@ -86980,7 +86979,6 @@ exports.PostItem = void 0;
 var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 var useNavigation_1 = __webpack_require__(/*! ../hooks/utils/useNavigation */ "./src/js/hooks/utils/useNavigation.ts");
 var UserInfo_1 = __webpack_require__(/*! ../user/UserInfo */ "./src/js/user/UserInfo.tsx");
-var useCurrentUser_1 = __webpack_require__(/*! ../hooks/auth/useCurrentUser */ "./src/js/hooks/auth/useCurrentUser.ts");
 var useLike_1 = __webpack_require__(/*! ../hooks/like/useLike */ "./src/js/hooks/like/useLike.ts");
 var IconAndCount_1 = __webpack_require__(/*! ../components/parts/IconAndCount */ "./src/js/components/parts/IconAndCount.tsx");
 var getLikeStatus_1 = __webpack_require__(/*! ../utils/getLikeStatus */ "./src/js/utils/getLikeStatus.ts");
@@ -86989,7 +86987,7 @@ var useHandleModal_1 = __webpack_require__(/*! ../hooks/utils/useHandleModal */ 
 var PostItem = function (_a) {
     var post = _a.post;
     var handleNavigate = (0, useNavigation_1.useNavigation)().handleNavigate;
-    var currentUser = (0, useCurrentUser_1.useCurrentUser)().currentUser;
+    var currentUser = (0, react_1.useContext)(AuthContext_1.AuthContext).currentUser;
     var _b = (0, useLike_1.useLike)({ postId: post.id }), handleLikePost = _b.handleLikePost, handleLikeDelete = _b.handleLikeDelete, postLikes = _b.postLikes;
     var _c = (0, getLikeStatus_1.getLikeStatus)({ postId: post.id, postLikes: postLikes }), isLiked = _c.isLiked, likeCount = _c.likeCount;
     var setIsLoginModalOpen = (0, react_1.useContext)(AuthContext_1.AuthContext).setIsLoginModalOpen;
@@ -86997,7 +86995,7 @@ var PostItem = function (_a) {
         setIsOpen: setIsLoginModalOpen,
     }).scrollDisabledAndModalOpen;
     return (react_1.default.createElement("li", { className: "article border cursor-pointer btn", onClick: function () {
-            currentUser ? handleNavigate("/post-detail/".concat(post.id)) : scrollDisabledAndModalOpen();
+            !currentUser ? scrollDisabledAndModalOpen() : handleNavigate("/post-detail/".concat(post.id));
         } },
         post && react_1.default.createElement(UserInfo_1.UserInfo, { post: post }),
         react_1.default.createElement("div", { className: "mt-3 post-item", dangerouslySetInnerHTML: { __html: post.content } }),
@@ -101504,7 +101502,7 @@ function __rewriteRelativeImportExtension(path, preserveJsx) {
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("4bca5aa41292a928fd4a")
+/******/ 		__webpack_require__.h = () => ("dbd889eabd20abf56c74")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
