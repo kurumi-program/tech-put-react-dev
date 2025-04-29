@@ -30945,7 +30945,7 @@ __webpack_require__.r(__webpack_exports__);
     if(true) {
       (function() {
         var localsJsonString = undefined;
-        // 1745943291628
+        // 1745943552860
         var cssReload = __webpack_require__(/*! ../../node_modules/mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js */ "./node_modules/mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js")(module.id, {});
         // only invalidate when locals change
         if (
@@ -85959,7 +85959,6 @@ exports.Profile = void 0;
 var React = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 var SidebarLeft_1 = __webpack_require__(/*! ../../components/sidebar/SidebarLeft */ "./src/js/components/sidebar/SidebarLeft.tsx");
 var SidebarRight_1 = __webpack_require__(/*! ../../components/sidebar/SidebarRight */ "./src/js/components/sidebar/SidebarRight.tsx");
-var IconListSp_1 = __webpack_require__(/*! ../../components/parts/IconListSp */ "./src/js/components/parts/IconListSp.tsx");
 var useProfileData_1 = __webpack_require__(/*! ../../hooks/profile/useProfileData */ "./src/js/hooks/profile/useProfileData.ts");
 var react_1 = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 var useHandleModal_1 = __webpack_require__(/*! ../../hooks/utils/useHandleModal */ "./src/js/hooks/utils/useHandleModal.ts");
@@ -85995,7 +85994,6 @@ var Profile = function () {
                     React.createElement("h2", { className: "font-bold articles-title ml-5 ".concat(activeTab === "liked" && "tab-active"), onClick: function () { return handleTabClick("liked"); } }, "\u3044\u3044\u306D")),
                 profile && (React.createElement(ProfileTabContent_1.ProfileTabContent, { activeTab: activeTab, profile: profile, scrollDisabledAndPostModalOpen: scrollDisabledAndPostModalOpen })))),
         React.createElement(SidebarRight_1.SidebarRight, null),
-        React.createElement(IconListSp_1.IconListSp, { className: "sidebar-sp border-t", register: false, login: false }),
         isEditOpen && (React.createElement(ProfileEditForm_1.ProfileEditForm, { setIsEditOpen: setIsEditOpen, onClick: scrollValidAndEditModalClose })),
         isPostOpen && React.createElement(PostEditForm_1.PostEditForm, { formTitle: "\u65B0\u898F\u4F5C\u6210", setIsOpen: setIsPostOpen })));
 };
@@ -101484,7 +101482,7 @@ function __rewriteRelativeImportExtension(path, preserveJsx) {
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("2efd85fe386e2c040515")
+/******/ 		__webpack_require__.h = () => ("962e275a6436d3e81d82")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */

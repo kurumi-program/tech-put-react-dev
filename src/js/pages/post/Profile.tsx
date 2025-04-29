@@ -1,7 +1,6 @@
 import * as React from "react";
 import { SidebarLeft } from "../../components/sidebar/SidebarLeft";
 import { SidebarRight } from "../../components/sidebar/SidebarRight";
-import { IconListSp } from "../../components/parts/IconListSp";
 import { useProfileData } from "../../hooks/profile/useProfileData";
 import { useRef, useState } from "react";
 import { useHandleModal } from "../../hooks/utils/useHandleModal";
@@ -82,7 +81,6 @@ export const Profile = () => {
         </ul>
       </ProfileLayout>
       <SidebarRight />
-      <IconListSp className="sidebar-sp border-t" register={false} login={false} />
       {isEditOpen && (
         <ProfileEditForm setIsEditOpen={setIsEditOpen} onClick={scrollValidAndEditModalClose} />
       )}
