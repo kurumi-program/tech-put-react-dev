@@ -1,3 +1,4 @@
 # .gitignore (React用)
 /node_modules
 /distbuild/
+/.env

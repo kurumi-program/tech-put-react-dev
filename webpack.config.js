@@ -2,16 +2,8 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const webpack = require("webpack");
 const dotenv = require("dotenv");
-const path = require("path");
 
-// .envファイルを読み込む
-const env = dotenv.config().parsed || {};
-
-// process.env.KEY形式に変換
-const envKeys = Object.keys(env).reduce((prev, next) => {
-  prev[`process.env.${next}`] = JSON.stringify(env[next]);
-  return prev;
-}, {});
+dotenv.config(); // .envファイルを読み込む
 
 module.exports = {
   entry: "./src/js/index.tsx",
@@ -31,7 +23,6 @@ module.exports = {
     },
     devMiddleware: {
       writeToDisk: (filePath) => {
-        // hot-update ファイルを除外
         return !/\.hot-update\.(js|json|js\.map)$/.test(filePath);
       },
     },
@@ -57,7 +48,10 @@ module.exports = {
       template: "./src/index.html",
     }),
     new MiniCssExtractPlugin(),
-    new webpack.DefinePlugin(envKeys), // ← ここを追加！！
+    new webpack.DefinePlugin({
+      "process.env.REACT_APP_BASE_URL": JSON.stringify(process.env.REACT_APP_BASE_URL),
+      "process.env.REACT_APP_BASE_URL_DEV": JSON.stringify(process.env.REACT_APP_BASE_URL_DEV),
+    }),
   ],
   resolve: {
     extensions: [".tsx", ".ts", ".js"],

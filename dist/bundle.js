@@ -30875,7 +30875,7 @@ __webpack_require__.r(__webpack_exports__);
     if(true) {
       (function() {
         var localsJsonString = undefined;
-        // 1745939331050
+        // 1745944379811
         var cssReload = __webpack_require__(/*! ../../mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js */ "./node_modules/mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js")(module.id, {});
         // only invalidate when locals change
         if (
@@ -30910,7 +30910,7 @@ __webpack_require__.r(__webpack_exports__);
     if(true) {
       (function() {
         var localsJsonString = undefined;
-        // 1745942764570
+        // 1745944379692
         var cssReload = __webpack_require__(/*! ../../node_modules/mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js */ "./node_modules/mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js")(module.id, {});
         // only invalidate when locals change
         if (
@@ -30945,7 +30945,7 @@ __webpack_require__.r(__webpack_exports__);
     if(true) {
       (function() {
         var localsJsonString = undefined;
-        // 1745944212172
+        // 1745944555149
         var cssReload = __webpack_require__(/*! ../../node_modules/mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js */ "./node_modules/mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js")(module.id, {});
         // only invalidate when locals change
         if (
@@ -87681,7 +87681,7 @@ var options = {
     ignoreHeaders: true,
 };
 exports.client = (0, axios_case_converter_1.default)(axios_1.default.create({
-    baseURL: undefined,
+    baseURL: "https://tech-put-rails.onrender.com",
     withCredentials: true,
 }), options);
 
@@ -101571,7 +101571,7 @@ function __rewriteRelativeImportExtension(path, preserveJsx) {
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("0c64e2a22f97a87eb090")
+/******/ 		__webpack_require__.h = () => ("c2f2d6fe20a91da983ef")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
