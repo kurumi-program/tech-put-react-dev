@@ -1,11 +1,11 @@
 import { Navigate, useParams } from "react-router-dom";
-import { useCurrentUser } from "../../hooks/auth/useCurrentUser";
-import React from "react";
+import React, { useContext } from "react";
 import { UserProfile } from "../../pages/post/UserProfile";
+import { AuthContext } from "../../contexts/AuthContext";
 
 export const UserProfileRote = () => {
   const { id } = useParams();
-  const { isLoading, currentUser } = useCurrentUser();
+  const { isLoading, currentUser } = useContext(AuthContext)
 
   if (isLoading || !currentUser) return null;
 

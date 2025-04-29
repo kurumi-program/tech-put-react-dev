@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { UserParts } from "../components/parts/UserParts";
 import { UserAvatarImage } from "../components/parts/UserAvatarImage";
 import { ProfileFollowButton } from "../components/parts/ProfileFollowButton";
 import { useRelationship } from "../hooks/relationship/useRelationship";
-import { useCurrentUser } from "../hooks/auth/useCurrentUser";
+import { AuthContext } from "../contexts/AuthContext";
 
 type Props = {
   id?: string;
@@ -24,7 +24,7 @@ export const RelationItem = ({
 }: Props) => {
   const { follow, handleFollow, handleUnfollow, isRelationLoading } = useRelationship(id ?? "");
   const isFollowed = follow?.isFollowed;
-  const { currentUser, isLoading } = useCurrentUser();
+  const { currentUser, isLoading } = useContext(AuthContext)
 
   if (isRelationLoading || isLoading) return null;
 

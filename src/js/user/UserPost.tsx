@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { useNavigation } from "../hooks/utils/useNavigation";
 import { UserAvatarImage } from "../components/parts/UserAvatarImage";
-import { useCurrentUser } from "../hooks/auth/useCurrentUser";
 import { AuthContext } from "../contexts/AuthContext";
 import { useHandleModal } from "../hooks/utils/useHandleModal";
 
@@ -16,8 +15,7 @@ type Props = {
 
 export const UserPost = ({ userId, userName, userUserName, createdAt, onClick, src }: Props) => {
   const { handleNavigate } = useNavigation();
-  const { currentUser } = useCurrentUser();
-  const { setIsLoginModalOpen } = useContext(AuthContext);
+  const { setIsLoginModalOpen, currentUser } = useContext(AuthContext);
   const { scrollDisabledAndModalOpen } = useHandleModal({
     setIsOpen: setIsLoginModalOpen,
   });

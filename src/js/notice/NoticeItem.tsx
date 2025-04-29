@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { UserPost } from "../user/UserPost";
 import { Notice } from "../types/notice";
 import { useNavigation } from "../hooks/utils/useNavigation";
 import { UserWithImageParts } from "../components/parts/UserWithImageParts";
-import { useCurrentUser } from "../hooks/auth/useCurrentUser";
+import { AuthContext } from "../contexts/AuthContext";
 
 type Props = {
   notice: Notice;
@@ -11,7 +11,7 @@ type Props = {
 
 export const NoticeItem = ({ notice }: Props) => {
   const { handleNavigate } = useNavigation();
-  const { currentUser } = useCurrentUser();
+  const { currentUser } = useContext(AuthContext)
 
   const handleNavClick = () => {
     if (notice.commentId) {

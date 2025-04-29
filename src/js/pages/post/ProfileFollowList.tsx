@@ -4,12 +4,13 @@ import { SidebarRight } from "../../components/sidebar/SidebarRight";
 import { TitleHead } from "../../components/parts/TitleHead";
 import { useRelationshipList } from "../../hooks/relationship/useRelationshipList";
 import { RelationItem } from "../../post/RelationItem";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigation } from "../../hooks/utils/useNavigation";
-import { useCurrentUser } from "../../hooks/auth/useCurrentUser";
+import { AuthContext } from "../../contexts/AuthContext";
+
 
 export const ProfileFollowList = () => {
-  const { currentUser } = useCurrentUser();
+  const { currentUser } = useContext(AuthContext)
   const { handleNavigate } = useNavigation();
   const userId = currentUser?.id ?? "";
 

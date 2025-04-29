@@ -1,12 +1,12 @@
 import * as React from "react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigation } from "../../hooks/utils/useNavigation";
 import { UserMenu } from "../../user/UserMenu";
-import { useCurrentUser } from "../../hooks/auth/useCurrentUser";
 import { SearchBox } from "../parts/SearchBox";
+import { AuthContext } from "../../contexts/AuthContext";
 
 export const Header = () => {
-  const { currentUser, isLoading } = useCurrentUser();
+  const { currentUser, isLoading } = useContext(AuthContext)
   const { handleNavigate } = useNavigation();
   const [isOpen, setIsOpen] = useState<boolean>(false);
 

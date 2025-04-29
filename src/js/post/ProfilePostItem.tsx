@@ -1,8 +1,7 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { Post } from "../types/post";
 import { useNavigation } from "../hooks/utils/useNavigation";
 import { UserInfo } from "../user/UserInfo";
-import { useCurrentUser } from "../hooks/auth/useCurrentUser";
 import { useLike } from "../hooks/like/useLike";
 import { IconAndCount } from "../components/parts/IconAndCount";
 import { getLikeStatus } from "../utils/getLikeStatus";
@@ -10,6 +9,7 @@ import { HandleDropDown } from "../components/parts/HandleDropDown";
 import { useDeletePost } from "../hooks/post/useDeletePost";
 import { useClickOutside } from "../hooks/utils/useClickOutside";
 import { PostEditForm } from "../pages/post/PostEditForm";
+import { AuthContext } from "../contexts/AuthContext";
 
 type Props = {
   post: Post;
@@ -17,7 +17,7 @@ type Props = {
 
 export const ProfilePostItem = ({ post }: Props) => {
   const { handleNavigate } = useNavigation();
-  const { currentUser } = useCurrentUser();
+  const { currentUser } = useContext(AuthContext)
   const { handleLikePost, handleLikeDelete, postLikes } = useLike({ postId: post.id });
   const { isLiked, likeCount } = getLikeStatus({ postId: post.id, postLikes });
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);

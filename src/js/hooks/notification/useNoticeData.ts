@@ -2,11 +2,11 @@ import { useContext, useEffect } from "react";
 import { client } from "../../services/client";
 import { NoticeContext } from "../../contexts/NoticeContext";
 import { authHeaders } from "../../services/authService";
-import { useCurrentUser } from "../auth/useCurrentUser";
+import { AuthContext } from "../../contexts/AuthContext";
 
 export const useNoticeData = () => {
   const { noticeList, setNoticeList, bellActive, setBellActive } = useContext(NoticeContext);
-  const { currentUser } = useCurrentUser();
+  const { currentUser } = useContext(AuthContext)
   const fetchNotices = async () => {
     if (!currentUser) return;
     try {

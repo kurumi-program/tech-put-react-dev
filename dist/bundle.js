@@ -30945,7 +30945,7 @@ __webpack_require__.r(__webpack_exports__);
     if(true) {
       (function() {
         var localsJsonString = undefined;
-        // 1745943552860
+        // 1745944212172
         var cssReload = __webpack_require__(/*! ../../node_modules/mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js */ "./node_modules/mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js")(module.id, {});
         // only invalidate when locals change
         if (
@@ -80391,10 +80391,10 @@ var React = __importStar(__webpack_require__(/*! react */ "./node_modules/react/
 var react_1 = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 var useNavigation_1 = __webpack_require__(/*! ../../hooks/utils/useNavigation */ "./src/js/hooks/utils/useNavigation.ts");
 var UserMenu_1 = __webpack_require__(/*! ../../user/UserMenu */ "./src/js/user/UserMenu.tsx");
-var useCurrentUser_1 = __webpack_require__(/*! ../../hooks/auth/useCurrentUser */ "./src/js/hooks/auth/useCurrentUser.ts");
 var SearchBox_1 = __webpack_require__(/*! ../parts/SearchBox */ "./src/js/components/parts/SearchBox.tsx");
+var AuthContext_1 = __webpack_require__(/*! ../../contexts/AuthContext */ "./src/js/contexts/AuthContext.tsx");
 var Header = function () {
-    var _a = (0, useCurrentUser_1.useCurrentUser)(), currentUser = _a.currentUser, isLoading = _a.isLoading;
+    var _a = (0, react_1.useContext)(AuthContext_1.AuthContext), currentUser = _a.currentUser, isLoading = _a.isLoading;
     var handleNavigate = (0, useNavigation_1.useNavigation)().handleNavigate;
     var _b = (0, react_1.useState)(false), isOpen = _b[0], setIsOpen = _b[1];
     if (isLoading)
@@ -81280,18 +81280,48 @@ exports.PublicRoute = PublicRoute;
 
 "use strict";
 
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.UserProfileRote = void 0;
 var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
-var useCurrentUser_1 = __webpack_require__(/*! ../../hooks/auth/useCurrentUser */ "./src/js/hooks/auth/useCurrentUser.ts");
-var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 var UserProfile_1 = __webpack_require__(/*! ../../pages/post/UserProfile */ "./src/js/pages/post/UserProfile.tsx");
+var AuthContext_1 = __webpack_require__(/*! ../../contexts/AuthContext */ "./src/js/contexts/AuthContext.tsx");
 var UserProfileRote = function () {
     var id = (0, react_router_dom_1.useParams)().id;
-    var _a = (0, useCurrentUser_1.useCurrentUser)(), isLoading = _a.isLoading, currentUser = _a.currentUser;
+    var _a = (0, react_1.useContext)(AuthContext_1.AuthContext), isLoading = _a.isLoading, currentUser = _a.currentUser;
     if (isLoading || !currentUser)
         return null;
     // 自分自身のプロフィールなら /my-page にリダイレクト
@@ -83204,10 +83234,10 @@ var react_1 = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 var client_1 = __webpack_require__(/*! ../../services/client */ "./src/js/services/client.ts");
 var NoticeContext_1 = __webpack_require__(/*! ../../contexts/NoticeContext */ "./src/js/contexts/NoticeContext.tsx");
 var authService_1 = __webpack_require__(/*! ../../services/authService */ "./src/js/services/authService.ts");
-var useCurrentUser_1 = __webpack_require__(/*! ../auth/useCurrentUser */ "./src/js/hooks/auth/useCurrentUser.ts");
+var AuthContext_1 = __webpack_require__(/*! ../../contexts/AuthContext */ "./src/js/contexts/AuthContext.tsx");
 var useNoticeData = function () {
     var _a = (0, react_1.useContext)(NoticeContext_1.NoticeContext), noticeList = _a.noticeList, setNoticeList = _a.setNoticeList, bellActive = _a.bellActive, setBellActive = _a.setBellActive;
-    var currentUser = (0, useCurrentUser_1.useCurrentUser)().currentUser;
+    var currentUser = (0, react_1.useContext)(AuthContext_1.AuthContext).currentUser;
     var fetchNotices = function () { return __awaiter(void 0, void 0, void 0, function () {
         var res, e_1;
         return __generator(this, function (_a) {
@@ -84916,19 +84946,49 @@ root.render(React.createElement(App_1.App, null));
 
 "use strict";
 
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.NoticeItem = void 0;
-var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 var useNavigation_1 = __webpack_require__(/*! ../hooks/utils/useNavigation */ "./src/js/hooks/utils/useNavigation.ts");
 var UserWithImageParts_1 = __webpack_require__(/*! ../components/parts/UserWithImageParts */ "./src/js/components/parts/UserWithImageParts.tsx");
-var useCurrentUser_1 = __webpack_require__(/*! ../hooks/auth/useCurrentUser */ "./src/js/hooks/auth/useCurrentUser.ts");
+var AuthContext_1 = __webpack_require__(/*! ../contexts/AuthContext */ "./src/js/contexts/AuthContext.tsx");
 var NoticeItem = function (_a) {
     var notice = _a.notice;
     var handleNavigate = (0, useNavigation_1.useNavigation)().handleNavigate;
-    var currentUser = (0, useCurrentUser_1.useCurrentUser)().currentUser;
+    var currentUser = (0, react_1.useContext)(AuthContext_1.AuthContext).currentUser;
     var handleNavClick = function () {
         if (notice.commentId) {
             handleNavigate("/post-detail/".concat(notice.postId, "/#mention-").concat(notice.commentId));
@@ -86165,10 +86225,10 @@ var useRelationshipList_1 = __webpack_require__(/*! ../../hooks/relationship/use
 var RelationItem_1 = __webpack_require__(/*! ../../post/RelationItem */ "./src/js/post/RelationItem.tsx");
 var react_1 = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 var useNavigation_1 = __webpack_require__(/*! ../../hooks/utils/useNavigation */ "./src/js/hooks/utils/useNavigation.ts");
-var useCurrentUser_1 = __webpack_require__(/*! ../../hooks/auth/useCurrentUser */ "./src/js/hooks/auth/useCurrentUser.ts");
+var AuthContext_1 = __webpack_require__(/*! ../../contexts/AuthContext */ "./src/js/contexts/AuthContext.tsx");
 var ProfileFollowList = function () {
     var _a;
-    var currentUser = (0, useCurrentUser_1.useCurrentUser)().currentUser;
+    var currentUser = (0, react_1.useContext)(AuthContext_1.AuthContext).currentUser;
     var handleNavigate = (0, useNavigation_1.useNavigation)().handleNavigate;
     var userId = (_a = currentUser === null || currentUser === void 0 ? void 0 : currentUser.id) !== null && _a !== void 0 ? _a : "";
     var _b = (0, useRelationshipList_1.useRelationshipList)(userId), followList = _b.followList, setFollowList = _b.setFollowList, fetchFollowList = _b.fetchFollowList;
@@ -86570,9 +86630,9 @@ var CommentAreaForm_1 = __webpack_require__(/*! ./CommentAreaForm */ "./src/js/p
 var useCommentPostEdit_1 = __webpack_require__(/*! ../hooks/comment/useCommentPostEdit */ "./src/js/hooks/comment/useCommentPostEdit.ts");
 var useCommentDelete_1 = __webpack_require__(/*! ../hooks/comment/useCommentDelete */ "./src/js/hooks/comment/useCommentDelete.ts");
 var useSmoothScroll_1 = __webpack_require__(/*! ../hooks/utils/useSmoothScroll */ "./src/js/hooks/utils/useSmoothScroll.ts");
-var useCurrentUser_1 = __webpack_require__(/*! ../hooks/auth/useCurrentUser */ "./src/js/hooks/auth/useCurrentUser.ts");
 var UserAvatarImage_1 = __webpack_require__(/*! ../components/parts/UserAvatarImage */ "./src/js/components/parts/UserAvatarImage.tsx");
 var MentionFormatText_1 = __webpack_require__(/*! ./MentionFormatText */ "./src/js/post/MentionFormatText.tsx");
+var AuthContext_1 = __webpack_require__(/*! ../contexts/AuthContext */ "./src/js/contexts/AuthContext.tsx");
 var CommentItem = function (_a) {
     var id = _a.id, comment = _a.comment, postId = _a.postId;
     var handleNavigate = (0, useNavigation_1.useNavigation)().handleNavigate;
@@ -86588,7 +86648,7 @@ var CommentItem = function (_a) {
         initialContent: comment.content,
     }), handleCommentEdit = _d.handleCommentEdit, content = _d.content, setContent = _d.setContent;
     var handleCommentDelete = (0, useCommentDelete_1.useCommentDelete)({ postId: postId, commentId: comment.id }).handleCommentDelete;
-    var currentUser = (0, useCurrentUser_1.useCurrentUser)().currentUser;
+    var currentUser = (0, react_1.useContext)(AuthContext_1.AuthContext).currentUser;
     //ドロップダウンの表示の際の背景押した時にコンテンツを非表示
     (0, useClickOutside_1.useClickOutside)({
         ref: dropdownRef,
@@ -87270,7 +87330,6 @@ exports.ProfilePostItem = void 0;
 var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 var useNavigation_1 = __webpack_require__(/*! ../hooks/utils/useNavigation */ "./src/js/hooks/utils/useNavigation.ts");
 var UserInfo_1 = __webpack_require__(/*! ../user/UserInfo */ "./src/js/user/UserInfo.tsx");
-var useCurrentUser_1 = __webpack_require__(/*! ../hooks/auth/useCurrentUser */ "./src/js/hooks/auth/useCurrentUser.ts");
 var useLike_1 = __webpack_require__(/*! ../hooks/like/useLike */ "./src/js/hooks/like/useLike.ts");
 var IconAndCount_1 = __webpack_require__(/*! ../components/parts/IconAndCount */ "./src/js/components/parts/IconAndCount.tsx");
 var getLikeStatus_1 = __webpack_require__(/*! ../utils/getLikeStatus */ "./src/js/utils/getLikeStatus.ts");
@@ -87278,10 +87337,11 @@ var HandleDropDown_1 = __webpack_require__(/*! ../components/parts/HandleDropDow
 var useDeletePost_1 = __webpack_require__(/*! ../hooks/post/useDeletePost */ "./src/js/hooks/post/useDeletePost.ts");
 var useClickOutside_1 = __webpack_require__(/*! ../hooks/utils/useClickOutside */ "./src/js/hooks/utils/useClickOutside.ts");
 var PostEditForm_1 = __webpack_require__(/*! ../pages/post/PostEditForm */ "./src/js/pages/post/PostEditForm.tsx");
+var AuthContext_1 = __webpack_require__(/*! ../contexts/AuthContext */ "./src/js/contexts/AuthContext.tsx");
 var ProfilePostItem = function (_a) {
     var post = _a.post;
     var handleNavigate = (0, useNavigation_1.useNavigation)().handleNavigate;
-    var currentUser = (0, useCurrentUser_1.useCurrentUser)().currentUser;
+    var currentUser = (0, react_1.useContext)(AuthContext_1.AuthContext).currentUser;
     var _b = (0, useLike_1.useLike)({ postId: post.id }), handleLikePost = _b.handleLikePost, handleLikeDelete = _b.handleLikeDelete, postLikes = _b.postLikes;
     var _c = (0, getLikeStatus_1.getLikeStatus)({ postId: post.id, postLikes: postLikes }), isLiked = _c.isLiked, likeCount = _c.likeCount;
     var _d = (0, react_1.useState)(false), isModalOpen = _d[0], setIsModalOpen = _d[1];
@@ -87395,22 +87455,52 @@ exports.ProfileTabContent = ProfileTabContent;
 
 "use strict";
 
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.RelationItem = void 0;
-var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 var UserParts_1 = __webpack_require__(/*! ../components/parts/UserParts */ "./src/js/components/parts/UserParts.tsx");
 var UserAvatarImage_1 = __webpack_require__(/*! ../components/parts/UserAvatarImage */ "./src/js/components/parts/UserAvatarImage.tsx");
 var ProfileFollowButton_1 = __webpack_require__(/*! ../components/parts/ProfileFollowButton */ "./src/js/components/parts/ProfileFollowButton.tsx");
 var useRelationship_1 = __webpack_require__(/*! ../hooks/relationship/useRelationship */ "./src/js/hooks/relationship/useRelationship.ts");
-var useCurrentUser_1 = __webpack_require__(/*! ../hooks/auth/useCurrentUser */ "./src/js/hooks/auth/useCurrentUser.ts");
+var AuthContext_1 = __webpack_require__(/*! ../contexts/AuthContext */ "./src/js/contexts/AuthContext.tsx");
 var RelationItem = function (_a) {
     var id = _a.id, userName = _a.userName, userUserName = _a.userUserName, userBio = _a.userBio, userAvatarUrl = _a.userAvatarUrl, onNavigateClick = _a.onNavigateClick;
     var _b = (0, useRelationship_1.useRelationship)(id !== null && id !== void 0 ? id : ""), follow = _b.follow, handleFollow = _b.handleFollow, handleUnfollow = _b.handleUnfollow, isRelationLoading = _b.isRelationLoading;
     var isFollowed = follow === null || follow === void 0 ? void 0 : follow.isFollowed;
-    var _c = (0, useCurrentUser_1.useCurrentUser)(), currentUser = _c.currentUser, isLoading = _c.isLoading;
+    var _c = (0, react_1.useContext)(AuthContext_1.AuthContext), currentUser = _c.currentUser, isLoading = _c.isLoading;
     if (isRelationLoading || isLoading)
         return null;
     return (react_1.default.createElement("li", { className: "sidebar-flex follow-container btn", onClick: onNavigateClick },
@@ -87674,14 +87764,14 @@ var useClickOutside_1 = __webpack_require__(/*! ../hooks/utils/useClickOutside *
 var useSignOut_1 = __webpack_require__(/*! ../hooks/auth/useSignOut */ "./src/js/hooks/auth/useSignOut.ts");
 var UserDropDown_1 = __webpack_require__(/*! ../components/parts/UserDropDown */ "./src/js/components/parts/UserDropDown.tsx");
 var getCurrentUserDisplayName_1 = __webpack_require__(/*! ../utils/getCurrentUserDisplayName */ "./src/js/utils/getCurrentUserDisplayName.ts");
-var useCurrentUser_1 = __webpack_require__(/*! ../hooks/auth/useCurrentUser */ "./src/js/hooks/auth/useCurrentUser.ts");
 var UserAvatarImage_1 = __webpack_require__(/*! ../components/parts/UserAvatarImage */ "./src/js/components/parts/UserAvatarImage.tsx");
 var useProfileData_1 = __webpack_require__(/*! ../hooks/profile/useProfileData */ "./src/js/hooks/profile/useProfileData.ts");
+var AuthContext_1 = __webpack_require__(/*! ../contexts/AuthContext */ "./src/js/contexts/AuthContext.tsx");
 var UserMenu = function (_a) {
     var isOpen = _a.isOpen, setIsOpen = _a.setIsOpen;
     var handleSignOut = (0, useSignOut_1.useSignOut)().handleSignOut;
     var dropdownRef = (0, react_1.useRef)(null);
-    var currentUser = (0, useCurrentUser_1.useCurrentUser)().currentUser;
+    var currentUser = (0, react_1.useContext)(AuthContext_1.AuthContext).currentUser;
     var userName = (0, getCurrentUserDisplayName_1.getCurrentUserDisplayName)({ currentUser: currentUser });
     var profile = (0, useProfileData_1.useProfileData)().profile;
     var isProfileLoading = (0, useProfileData_1.useProfileData)().isProfileLoading;
@@ -87752,14 +87842,12 @@ exports.UserPost = void 0;
 var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 var useNavigation_1 = __webpack_require__(/*! ../hooks/utils/useNavigation */ "./src/js/hooks/utils/useNavigation.ts");
 var UserAvatarImage_1 = __webpack_require__(/*! ../components/parts/UserAvatarImage */ "./src/js/components/parts/UserAvatarImage.tsx");
-var useCurrentUser_1 = __webpack_require__(/*! ../hooks/auth/useCurrentUser */ "./src/js/hooks/auth/useCurrentUser.ts");
 var AuthContext_1 = __webpack_require__(/*! ../contexts/AuthContext */ "./src/js/contexts/AuthContext.tsx");
 var useHandleModal_1 = __webpack_require__(/*! ../hooks/utils/useHandleModal */ "./src/js/hooks/utils/useHandleModal.ts");
 var UserPost = function (_a) {
     var userId = _a.userId, userName = _a.userName, userUserName = _a.userUserName, createdAt = _a.createdAt, onClick = _a.onClick, src = _a.src;
     var handleNavigate = (0, useNavigation_1.useNavigation)().handleNavigate;
-    var currentUser = (0, useCurrentUser_1.useCurrentUser)().currentUser;
-    var setIsLoginModalOpen = (0, react_1.useContext)(AuthContext_1.AuthContext).setIsLoginModalOpen;
+    var _b = (0, react_1.useContext)(AuthContext_1.AuthContext), setIsLoginModalOpen = _b.setIsLoginModalOpen, currentUser = _b.currentUser;
     var scrollDisabledAndModalOpen = (0, useHandleModal_1.useHandleModal)({
         setIsOpen: setIsLoginModalOpen,
     }).scrollDisabledAndModalOpen;
@@ -87851,10 +87939,11 @@ exports.getLikeStatus = getLikeStatus;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.getOwner = void 0;
-var useCurrentUser_1 = __webpack_require__(/*! ../hooks/auth/useCurrentUser */ "./src/js/hooks/auth/useCurrentUser.ts");
+var react_1 = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var AuthContext_1 = __webpack_require__(/*! ../contexts/AuthContext */ "./src/js/contexts/AuthContext.tsx");
 var getOwner = function (_a) {
     var post = _a.post, comment = _a.comment;
-    var currentUser = (0, useCurrentUser_1.useCurrentUser)().currentUser;
+    var currentUser = (0, react_1.useContext)(AuthContext_1.AuthContext).currentUser;
     if (post) {
         return post && currentUser ? String(post.userId) === String(currentUser.id) : false;
     }
@@ -101482,7 +101571,7 @@ function __rewriteRelativeImportExtension(path, preserveJsx) {
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("962e275a6436d3e81d82")
+/******/ 		__webpack_require__.h = () => ("0c64e2a22f97a87eb090")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */

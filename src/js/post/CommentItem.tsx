@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { Comment } from "../types/comment";
 import { useNavigation } from "../hooks/utils/useNavigation";
 import { getUserName } from "../utils/getUserName";
@@ -9,9 +9,9 @@ import { CommentAreaForm } from "./CommentAreaForm";
 import { useCommentPostEdit } from "../hooks/comment/useCommentPostEdit";
 import { useCommentDelete } from "../hooks/comment/useCommentDelete";
 import { useSmoothScroll } from "../hooks/utils/useSmoothScroll";
-import { useCurrentUser } from "../hooks/auth/useCurrentUser";
 import { UserAvatarImage } from "../components/parts/UserAvatarImage";
 import { MentionFormatText } from "./MentionFormatText";
+import { AuthContext } from "../contexts/AuthContext";
 
 type Props = {
   comment: Comment;
@@ -33,7 +33,7 @@ export const CommentItem = ({ id, comment, postId }: Props) => {
     initialContent: comment.content,
   });
   const { handleCommentDelete } = useCommentDelete({ postId, commentId: comment.id });
-  const { currentUser } = useCurrentUser();
+  const { currentUser } = useContext(AuthContext)
 
   //ドロップダウンの表示の際の背景押した時にコンテンツを非表示
   useClickOutside({

@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { Post } from "../types/post";
 import { useNavigation } from "../hooks/utils/useNavigation";
 import { UserInfo } from "../user/UserInfo";
-import { useCurrentUser } from "../hooks/auth/useCurrentUser";
 import { useLike } from "../hooks/like/useLike";
 import { IconAndCount } from "../components/parts/IconAndCount";
 import { getLikeStatus } from "../utils/getLikeStatus";
