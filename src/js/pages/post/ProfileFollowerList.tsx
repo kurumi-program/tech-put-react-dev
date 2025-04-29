@@ -2,7 +2,6 @@ import * as React from "react";
 import { SidebarLeft } from "../../components/sidebar/SidebarLeft";
 import { SidebarRight } from "../../components/sidebar/SidebarRight";
 import { TitleHead } from "../../components/parts/TitleHead";
-import { IconListSp } from "../../components/parts/IconListSp";
 import { useRelationshipList } from "../../hooks/relationship/useRelationshipList";
 import { RelationItem } from "../../post/RelationItem";
 import { useEffect } from "react";
@@ -47,7 +46,6 @@ export const ProfileFollowerList = () => {
         </div>
       </main>
       <SidebarRight />
-      <IconListSp className="sidebar-sp border-t" register={false} login={false} />
     </div>
   );
 };

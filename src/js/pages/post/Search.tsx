@@ -2,7 +2,6 @@ import * as React from "react";
 import { SidebarLeft } from "../../components/sidebar/SidebarLeft";
 import { SidebarRight } from "../../components/sidebar/SidebarRight";
 import { TitleHead } from "../../components/parts/TitleHead";
-import { IconListSp } from "../../components/parts/IconListSp";
 import { useSearch } from "../../hooks/search/useSearch";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
@@ -31,7 +30,6 @@ export const Search = () => {
         </ul>
       </main>
       <SidebarRight />
-      <IconListSp className="sidebar-sp border-t" register={false} login={false} />
     </div>
   );
 };

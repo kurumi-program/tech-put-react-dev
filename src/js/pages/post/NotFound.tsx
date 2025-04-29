@@ -1,8 +1,6 @@
 import * as React from "react";
 import { SidebarLeft } from "../../components/sidebar/SidebarLeft";
 import { SidebarRight } from "../../components/sidebar/SidebarRight";
-import { TitleHead } from "../../components/parts/TitleHead";
-import { IconListSp } from "../../components/parts/IconListSp";
 
 export const NotFound = () => {
   return (
@@ -17,7 +15,6 @@ export const NotFound = () => {
         </ul>
       </main>
       <SidebarRight />
-      <IconListSp className="sidebar-sp border-t" register={false} login={false} />
     </div>
   );
 };

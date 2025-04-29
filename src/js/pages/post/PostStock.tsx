@@ -2,7 +2,6 @@ import * as React from "react";
 import { SidebarLeft } from "../../components/sidebar/SidebarLeft";
 import { SidebarRight } from "../../components/sidebar/SidebarRight";
 import { TitleHead } from "../../components/parts/TitleHead";
-import { IconListSp } from "../../components/parts/IconListSp";
 import { StockList } from "../../post/StockList";
 
 export const PostStock = () => {
@@ -16,7 +15,6 @@ export const PostStock = () => {
         </ul>
       </main>
       <SidebarRight />
-      <IconListSp className="sidebar-sp border-t" register={false} login={false} />
     </div>
   );
 };
