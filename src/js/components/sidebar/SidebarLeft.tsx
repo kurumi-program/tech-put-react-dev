@@ -41,11 +41,11 @@ export const SidebarLeft = () => {
           <IconListSp
             onHomeClick={() => handleNavigate("/")}
             onPostClick={scrollDisabledAndPostModalOpen}
-            onNoticeClick={() => handleNavigate("/notification")}
+            bellActive={bellActive}
+            onNoticeClick={handleBellClick}
             onStockClick={() => handleNavigate("/stocks")}
             onProfileClick={() => handleNavigate("/my-page")}
             className="sidebar-sp border-t"
-            bellActive={bellActive}
             register={false}
             login={false}
           />

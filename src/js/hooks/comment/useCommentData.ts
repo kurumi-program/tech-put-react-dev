@@ -19,6 +19,7 @@ export const useCommentData = (postId: string) => {
   };
 
   useEffect(() => {
+    setCommentList([]);
     if (postId) {
       fetchComments();
     }

@@ -30875,7 +30875,7 @@ __webpack_require__.r(__webpack_exports__);
     if(true) {
       (function() {
         var localsJsonString = undefined;
-        // 1745944379811
+        // 1746011007521
         var cssReload = __webpack_require__(/*! ../../mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js */ "./node_modules/mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js")(module.id, {});
         // only invalidate when locals change
         if (
@@ -30910,7 +30910,7 @@ __webpack_require__.r(__webpack_exports__);
     if(true) {
       (function() {
         var localsJsonString = undefined;
-        // 1745944379692
+        // 1746011007425
         var cssReload = __webpack_require__(/*! ../../node_modules/mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js */ "./node_modules/mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js")(module.id, {});
         // only invalidate when locals change
         if (
@@ -30945,7 +30945,7 @@ __webpack_require__.r(__webpack_exports__);
     if(true) {
       (function() {
         var localsJsonString = undefined;
-        // 1745944555149
+        // 1746022469178
         var cssReload = __webpack_require__(/*! ../../node_modules/mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js */ "./node_modules/mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js")(module.id, {});
         // only invalidate when locals change
         if (
@@ -81400,7 +81400,7 @@ var SidebarLeft = function () {
         currentUser ? (react_1.default.createElement(react_1.default.Fragment, null,
             react_1.default.createElement("aside", { className: "sidebar sidebar-l-w flex-item border-r" },
                 react_1.default.createElement(IconList_1.IconList, { className: "sidebar-left sidebar-content", home: "\u30DB\u30FC\u30E0", onHomeClick: function () { return handleNavigate("/"); }, post: "\u6295\u7A3F\u3059\u308B", onPostClick: scrollDisabledAndPostModalOpen, bell: "\u901A\u77E5", bellActive: bellActive, onNoticeClick: handleBellClick, stock: "\u30B9\u30C8\u30C3\u30AF", onStockClick: function () { return handleNavigate("/stocks"); }, myPage: "\u30DE\u30A4\u30DA\u30FC\u30B8", onProfileClick: function () { return handleNavigate("/my-page"); } })),
-            react_1.default.createElement(IconListSp_1.IconListSp, { onHomeClick: function () { return handleNavigate("/"); }, onPostClick: scrollDisabledAndPostModalOpen, onNoticeClick: function () { return handleNavigate("/notification"); }, onStockClick: function () { return handleNavigate("/stocks"); }, onProfileClick: function () { return handleNavigate("/my-page"); }, className: "sidebar-sp border-t", bellActive: bellActive, register: false, login: false }))) : (react_1.default.createElement(react_1.default.Fragment, null,
+            react_1.default.createElement(IconListSp_1.IconListSp, { onHomeClick: function () { return handleNavigate("/"); }, onPostClick: scrollDisabledAndPostModalOpen, bellActive: bellActive, onNoticeClick: handleBellClick, onStockClick: function () { return handleNavigate("/stocks"); }, onProfileClick: function () { return handleNavigate("/my-page"); }, className: "sidebar-sp border-t", register: false, login: false }))) : (react_1.default.createElement(react_1.default.Fragment, null,
             react_1.default.createElement("aside", { className: "sidebar sidebar-l-w flex-item border-r" },
                 react_1.default.createElement(IconList_1.IconList, { className: "sidebar-left sidebar-content", register: "\u65B0\u898F\u767B\u9332", onRegisterClick: function () { return handleNavigate("/signup"); }, login: "\u30ED\u30B0\u30A4\u30F3", onLoginClick: function () { return handleNavigate("/signin"); } })),
             react_1.default.createElement(IconListSp_1.IconListSp, { className: "sidebar-sp border-t", home: false, post: false, bell: false, stock: false, myPage: false, onRegisterClick: function () { return handleNavigate("/signup"); }, onLoginClick: function () { return handleNavigate("/signin"); } }))),
@@ -82767,6 +82767,7 @@ var useCommentData = function (postId) {
         });
     }); };
     (0, react_1.useEffect)(function () {
+        setCommentList([]);
         if (postId) {
             fetchComments();
         }
@@ -86694,7 +86695,7 @@ var CommentItem = function (_a) {
                 react_1.default.createElement(UserAvatarImage_1.UserAvatarImage, { src: comment.userAvatarUrl })),
             react_1.default.createElement("div", { className: "ml-2" },
                 react_1.default.createElement("div", { className: "flex" },
-                    react_1.default.createElement("p", { className: "comment-user-name" }, userName),
+                    react_1.default.createElement("p", { className: "comment-user-name hover-underline", onClick: navigate }, userName),
                     react_1.default.createElement("p", { className: "comment-date ml-1" }, comment.createdAt)),
                 react_1.default.createElement("p", { className: "comment-txt", style: { whiteSpace: "pre-wrap", wordBreak: "break-word" } }, formattedValue))),
         isCommentOwner && (react_1.default.createElement(HandleDropDown_1.HandleDropDown, { classNameIcon: "mt-2", ref: dropdownRef, isOpen: isDropdownOpen, onPulldownClick: function () { return setIsDropdownOpen(true); }, onEditClick: handleEditClick, onDeleteClick: handleCommentDelete, remove: "\u524A\u9664\u3059\u308B", edit: "\u7DE8\u96C6\u3059\u308B" }))))));
@@ -101571,7 +101572,7 @@ function __rewriteRelativeImportExtension(path, preserveJsx) {
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("c2f2d6fe20a91da983ef")
+/******/ 		__webpack_require__.h = () => ("e9614562e4d34a907ca5")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */

@@ -33,7 +33,7 @@ export const CommentItem = ({ id, comment, postId }: Props) => {
     initialContent: comment.content,
   });
   const { handleCommentDelete } = useCommentDelete({ postId, commentId: comment.id });
-  const { currentUser } = useContext(AuthContext)
+  const { currentUser } = useContext(AuthContext);
 
   //ドロップダウンの表示の際の背景押した時にコンテンツを非表示
   useClickOutside({
@@ -99,7 +99,9 @@ export const CommentItem = ({ id, comment, postId }: Props) => {
             </div>
             <div className="ml-2">
               <div className="flex">
-                <p className="comment-user-name">{userName}</p>
+                <p className="comment-user-name hover-underline" onClick={navigate}>
+                  {userName}
+                </p>
                 <p className="comment-date ml-1">{comment.createdAt}</p>
               </div>
               <p
