@@ -5,7 +5,7 @@ import { ProfileLayout } from "../../post/ProfileLayout";
 import { useUserProfile } from "../../hooks/profile/useUserProfile";
 import { useParams } from "react-router-dom";
 import { UserPostList } from "../../post/UserPostList";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { scrollToSection } from "../../utils/scrollToSection";
 import { useRelationship } from "../../hooks/relationship/useRelationship";
 import { useNavigation } from "../../hooks/utils/useNavigation";
