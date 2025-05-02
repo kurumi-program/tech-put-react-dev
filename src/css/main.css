@@ -1367,14 +1367,21 @@ textarea:focus {
   border: 1px solid var(--border-color);
 }
 
+.learn-button-active {
+  background: var(--blue-color);
+  color: var(--color-white);
+}
+
 .learn-button:hover {
   background: var(--blue-color);
   color: var(--color-white);
 }
 
-.learn-button-active {
-  background: var(--blue-color);
-  color: var(--color-white);
+@media (hover: none) {
+  .learn-button:hover:not(.learn-button-active) {
+    background: initial;
+    color: initial;
+  }
 }
 
 /* 画像拡大処理 */
