@@ -84,6 +84,7 @@ export const Profile = () => {
       {isEditOpen && (
         <ProfileEditForm setIsEditOpen={setIsEditOpen} onClick={scrollValidAndEditModalClose} />
       )}
+      {/*記事がない場合に作成を促すモーダルとして存在 */}
       {isPostOpen && <PostEditForm formTitle="新規作成" setIsOpen={setIsPostOpen} />}
     </div>
   );

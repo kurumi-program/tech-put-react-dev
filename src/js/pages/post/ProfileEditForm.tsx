@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FormButton } from "../../components/parts/FormButton";
 import defaultAvatar from "../../../assets/images/default-avatar.png";
 import { useProfileEdit } from "../../hooks/profile/useProfileEdit";
+import { useHandleModal } from "../../hooks/utils/useHandleModal";
 
 type Props = {
   onClick: () => void;
@@ -14,6 +15,9 @@ export const ProfileEditForm = ({ onClick, setIsEditOpen }: Props) => {
   const [editAvatar, setEditAvatar] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [errorText, setErrorText] = useState<boolean>(false);
+  const { scrollValidAndEditModalClose } = useHandleModal({
+    setIsEditOpen,
+  });
 
   const { profile, handleEditSubmit } = useProfileEdit({
     name: editName,
@@ -46,7 +50,7 @@ export const ProfileEditForm = ({ onClick, setIsEditOpen }: Props) => {
     setErrorText(false);
     e.preventDefault();
     handleEditSubmit();
-    setIsEditOpen(false);
+    scrollValidAndEditModalClose();
   };
 
   return (
