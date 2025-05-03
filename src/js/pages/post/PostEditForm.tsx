@@ -7,9 +7,16 @@ type Props = {
   formTitle?: string;
   postId?: string; // 省略可能 → あると編集、ないと新規作成
   initialContent?: string; // 編集時の初期コンテンツ
+  initialLearn?: boolean;
 };
 
-export const PostEditForm = ({ setIsOpen, formTitle, postId, initialContent }: Props) => {
+export const PostEditForm = ({
+  setIsOpen,
+  formTitle,
+  postId,
+  initialContent,
+  initialLearn,
+}: Props) => {
   const { scrollValidAndEditModalClose } = useHandleModal({
     setIsEditOpen: setIsOpen,
   });
@@ -29,6 +36,7 @@ export const PostEditForm = ({ setIsOpen, formTitle, postId, initialContent }: P
             setIsOpen={setIsOpen}
             postId={postId}
             initialContent={initialContent}
+            initialLearn={initialLearn}
           />
         </div>
       </div>

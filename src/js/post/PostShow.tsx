@@ -12,6 +12,7 @@ import { getLikeStatus } from "../utils/getLikeStatus";
 import { getStockStatus } from "../utils/getStockStatus";
 import { useStock } from "../hooks/stock/useStock";
 import { PostImageModal } from "./PostImageModal";
+import { usePostEdit } from "../hooks/post/usePostEdit";
 
 type Props = {
   post: Post | undefined;
@@ -101,6 +102,7 @@ export const PostShow = ({ count, post, isOwner, scrollToSection }: Props) => {
           setIsOpen={setIsModalOpen}
           postId={post?.id}
           initialContent={post?.content}
+          initialLearn={post?.learn}
         />
       )}
       {post && <PostImageModal post={post} />}

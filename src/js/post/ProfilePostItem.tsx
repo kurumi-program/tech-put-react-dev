@@ -17,7 +17,7 @@ type Props = {
 
 export const ProfilePostItem = ({ post }: Props) => {
   const { handleNavigate } = useNavigation();
-  const { currentUser } = useContext(AuthContext)
+  const { currentUser } = useContext(AuthContext);
   const { handleLikePost, handleLikeDelete, postLikes } = useLike({ postId: post.id });
   const { isLiked, likeCount } = getLikeStatus({ postId: post.id, postLikes });
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -83,8 +83,9 @@ export const ProfilePostItem = ({ post }: Props) => {
         <PostEditForm
           formTitle="編集"
           setIsOpen={setIsModalOpen}
-          postId={post?.id}
-          initialContent={post?.content}
+          postId={post.id}
+          initialContent={post.content}
+          initialLearn={post.learn}
         />
       )}
     </>

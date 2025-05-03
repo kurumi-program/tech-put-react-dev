@@ -34,21 +34,39 @@ export const usePostEdit = (
   useEffect(() => {
     if (postId && initialContent) {
       setEditorState(createEditorStateFromHTML(initialContent));
+      setIsLearn(initialLearn);
     }
-  }, [postId, initialContent]);
+  }, [postId, initialContent, initialLearn]);
 
-  //学習の場合のクリック操作
   const handleLearnClick = () => {
-    setIsLearn(!isLearn);
-
-    if (!isLearn) {
-      setEditorState(createEditorStateFromHTML(postLearnTemplate));
-    } else {
-      if (initialContent) {
-        //編集時
-        setEditorState(createEditorStateFromHTML(initialContent));
+    if (postId && initialContent) {
+      // 編集モード
+      if (initialLearn) {
+        // 開いたときのisLearnがtrueの場合：
+        // → 学習ボタンを押しても状態だけ切り替え。内容はそのまま！
+        setIsLearn(!isLearn);
       } else {
-        //新規作成時
+        // 開いたときのisLearnがfalseの場合：
+        if (!isLearn) {
+          //isLearnがfalseの場合
+          // 学習内容のテンプレに差し替えてisLearnをfalseにする
+          setEditorState(createEditorStateFromHTML(postLearnTemplate));
+          setIsLearn(true);
+        } else {
+          //isLearnがtrueの場合
+          // isLearn を false にする（内容はそのまま）
+          setEditorState(createEditorStateFromHTML(initialContent));
+          setIsLearn(false);
+        }
+      }
+    } else {
+      // 新規作成時
+      const newIsLearn = !isLearn;
+      setIsLearn(newIsLearn);
+
+      if (newIsLearn) {
+        setEditorState(createEditorStateFromHTML(postLearnTemplate));
+      } else {
         setEditorState(EditorState.createEmpty());
       }
     }

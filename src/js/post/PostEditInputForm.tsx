@@ -7,10 +7,16 @@ import { usePostEdit } from "../hooks/post/usePostEdit";
 type Props = {
   postId?: string; // ない場合は新規作成
   initialContent?: string; // 初期コンテンツ（編集時のみ渡す）
+  initialLearn?: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export const PostEditInputForm = ({ postId, initialContent = "", setIsOpen }: Props) => {
+export const PostEditInputForm = ({
+  postId,
+  initialContent = "",
+  setIsOpen,
+  initialLearn,
+}: Props) => {
   const {
     editorState,
     setEditorState,
@@ -19,7 +25,7 @@ export const PostEditInputForm = ({ postId, initialContent = "", setIsOpen }: Pr
     handleLearnClick,
     handleImageUpload,
     isLearn,
-  } = usePostEdit(postId, initialContent, () => setIsOpen(false));
+  } = usePostEdit(postId, initialContent, () => setIsOpen(false), initialLearn);
 
   return (
     <div className="form-editor">

@@ -30945,7 +30945,7 @@ __webpack_require__.r(__webpack_exports__);
     if(true) {
       (function() {
         var localsJsonString = undefined;
-        // 1746241236357
+        // 1746259300770
         var cssReload = __webpack_require__(/*! ../../node_modules/mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js */ "./node_modules/mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js")(module.id, {});
         // only invalidate when locals change
         if (
@@ -83640,21 +83640,41 @@ var usePostEdit = function (postId, initialContent, closeModal, initialLearn) {
     (0, react_1.useEffect)(function () {
         if (postId && initialContent) {
             setEditorState(createEditorStateFromHTML(initialContent));
+            setIsLearn(initialLearn);
         }
-    }, [postId, initialContent]);
-    //学習の場合のクリック操作
+    }, [postId, initialContent, initialLearn]);
     var handleLearnClick = function () {
-        setIsLearn(!isLearn);
-        if (!isLearn) {
-            setEditorState(createEditorStateFromHTML(postLearnTemplate_1.postLearnTemplate));
-        }
-        else {
-            if (initialContent) {
-                //編集時
-                setEditorState(createEditorStateFromHTML(initialContent));
+        if (postId && initialContent) {
+            // 編集モード
+            if (initialLearn) {
+                // 開いたときのisLearnがtrueの場合：
+                // → 学習ボタンを押しても状態だけ切り替え。内容はそのまま！
+                setIsLearn(!isLearn);
             }
             else {
-                //新規作成時
+                // 開いたときのisLearnがfalseの場合：
+                if (!isLearn) {
+                    //isLearnがfalseの場合
+                    // 学習内容のテンプレに差し替えてisLearnをfalseにする
+                    setEditorState(createEditorStateFromHTML(postLearnTemplate_1.postLearnTemplate));
+                    setIsLearn(true);
+                }
+                else {
+                    //isLearnがtrueの場合
+                    // isLearn を false にする（内容はそのまま）
+                    setEditorState(createEditorStateFromHTML(initialContent));
+                    setIsLearn(false);
+                }
+            }
+        }
+        else {
+            // 新規作成時
+            var newIsLearn = !isLearn;
+            setIsLearn(newIsLearn);
+            if (newIsLearn) {
+                setEditorState(createEditorStateFromHTML(postLearnTemplate_1.postLearnTemplate));
+            }
+            else {
                 setEditorState(draft_js_1.EditorState.createEmpty());
             }
         }
@@ -85895,7 +85915,7 @@ var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/r
 var PostEditInputForm_1 = __webpack_require__(/*! ../../post/PostEditInputForm */ "./src/js/post/PostEditInputForm.tsx");
 var useHandleModal_1 = __webpack_require__(/*! ../../hooks/utils/useHandleModal */ "./src/js/hooks/utils/useHandleModal.ts");
 var PostEditForm = function (_a) {
-    var setIsOpen = _a.setIsOpen, formTitle = _a.formTitle, postId = _a.postId, initialContent = _a.initialContent;
+    var setIsOpen = _a.setIsOpen, formTitle = _a.formTitle, postId = _a.postId, initialContent = _a.initialContent, initialLearn = _a.initialLearn;
     var scrollValidAndEditModalClose = (0, useHandleModal_1.useHandleModal)({
         setIsEditOpen: setIsOpen,
     }).scrollValidAndEditModalClose;
@@ -85905,7 +85925,7 @@ var PostEditForm = function (_a) {
             react_1.default.createElement("h2", { className: "form-head text-center border-b" }, formTitle),
             react_1.default.createElement("p", { className: "error-message", id: "error-message" }),
             react_1.default.createElement("div", null,
-                react_1.default.createElement(PostEditInputForm_1.PostEditInputForm, { setIsOpen: setIsOpen, postId: postId, initialContent: initialContent })))));
+                react_1.default.createElement(PostEditInputForm_1.PostEditInputForm, { setIsOpen: setIsOpen, postId: postId, initialContent: initialContent, initialLearn: initialLearn })))));
 };
 exports.PostEditForm = PostEditForm;
 
@@ -86853,8 +86873,8 @@ var react_draft_wysiwyg_1 = __webpack_require__(/*! react-draft-wysiwyg */ "./no
 var FormButton_1 = __webpack_require__(/*! ../components/parts/FormButton */ "./src/js/components/parts/FormButton.tsx");
 var usePostEdit_1 = __webpack_require__(/*! ../hooks/post/usePostEdit */ "./src/js/hooks/post/usePostEdit.ts");
 var PostEditInputForm = function (_a) {
-    var postId = _a.postId, _b = _a.initialContent, initialContent = _b === void 0 ? "" : _b, setIsOpen = _a.setIsOpen;
-    var _c = (0, usePostEdit_1.usePostEdit)(postId, initialContent, function () { return setIsOpen(false); }), editorState = _c.editorState, setEditorState = _c.setEditorState, errorText = _c.errorText, handlePost = _c.handlePost, handleLearnClick = _c.handleLearnClick, handleImageUpload = _c.handleImageUpload, isLearn = _c.isLearn;
+    var postId = _a.postId, _b = _a.initialContent, initialContent = _b === void 0 ? "" : _b, setIsOpen = _a.setIsOpen, initialLearn = _a.initialLearn;
+    var _c = (0, usePostEdit_1.usePostEdit)(postId, initialContent, function () { return setIsOpen(false); }, initialLearn), editorState = _c.editorState, setEditorState = _c.setEditorState, errorText = _c.errorText, handlePost = _c.handlePost, handleLearnClick = _c.handleLearnClick, handleImageUpload = _c.handleImageUpload, isLearn = _c.isLearn;
     return (react_1.default.createElement("div", { className: "form-editor" },
         errorText && react_1.default.createElement("p", { className: "text-red-600 text-base" }, "\u30C6\u30AD\u30B9\u30C8\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044"),
         react_1.default.createElement(react_draft_wysiwyg_1.Editor, { editorState: editorState, onEditorStateChange: setEditorState, editorClassName: "editorClassName", toolbar: {
@@ -87180,7 +87200,7 @@ var PostShow = function (_a) {
                 react_1.default.createElement(StockIcon_1.StockIcon, { onClick: function () {
                         isStocked ? handleStockDelete() : handleStockPost();
                     }, className: isStocked ? "fa-solid" : "fa-regular", stock: isStocked ? "ストックを外す" : "ストックする" }))),
-        isModalOpen && (react_1.default.createElement(PostEditForm_1.PostEditForm, { formTitle: "\u7DE8\u96C6", setIsOpen: setIsModalOpen, postId: post === null || post === void 0 ? void 0 : post.id, initialContent: post === null || post === void 0 ? void 0 : post.content })),
+        isModalOpen && (react_1.default.createElement(PostEditForm_1.PostEditForm, { formTitle: "\u7DE8\u96C6", setIsOpen: setIsModalOpen, postId: post === null || post === void 0 ? void 0 : post.id, initialContent: post === null || post === void 0 ? void 0 : post.content, initialLearn: post === null || post === void 0 ? void 0 : post.learn })),
         post && react_1.default.createElement(PostImageModal_1.PostImageModal, { post: post })));
 };
 exports.PostShow = PostShow;
@@ -87383,7 +87403,7 @@ var ProfilePostItem = function (_a) {
                                 : handleLikePost()
                             : handleNavigate("/signup"); // 未ログインならサインアップへ
                     }, className: isLiked ? "fa-heart fa-solid like-active" : "fa-heart", classHover: isLiked ? "" : "like-hover", count: likeCount }))),
-        isModalOpen && (react_1.default.createElement(PostEditForm_1.PostEditForm, { formTitle: "\u7DE8\u96C6", setIsOpen: setIsModalOpen, postId: post === null || post === void 0 ? void 0 : post.id, initialContent: post === null || post === void 0 ? void 0 : post.content }))));
+        isModalOpen && (react_1.default.createElement(PostEditForm_1.PostEditForm, { formTitle: "\u7DE8\u96C6", setIsOpen: setIsModalOpen, postId: post.id, initialContent: post.content, initialLearn: post.learn }))));
 };
 exports.ProfilePostItem = ProfilePostItem;
 
@@ -101576,7 +101596,7 @@ function __rewriteRelativeImportExtension(path, preserveJsx) {
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("ac5d7f6cb39e8b2a53d0")
+/******/ 		__webpack_require__.h = () => ("30e89d44ab846f392ac5")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
