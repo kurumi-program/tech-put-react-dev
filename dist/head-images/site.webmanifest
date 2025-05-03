@@ -1,6 +1,6 @@
 {
-  "name": "MyWebSite",
-  "short_name": "MySite",
+  "name": "TechPut",
+  "short_name": "TechPut",
   "icons": [
     {
       "src": "/head-images/web-app-manifest-192x192.png",
