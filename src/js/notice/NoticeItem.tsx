@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { UserPost } from "../user/UserPost";
 import { Notice } from "../types/notice";
 import { useNavigation } from "../hooks/utils/useNavigation";
 import { UserWithImageParts } from "../components/parts/UserWithImageParts";
