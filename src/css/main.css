@@ -1445,3 +1445,7 @@ textarea:focus {
   height: 100%;
   align-items: center;
 }
+
+.google-login {
+  margin-top: 1px;
+}
