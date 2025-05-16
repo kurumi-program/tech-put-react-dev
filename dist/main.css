@@ -2333,6 +2333,10 @@ textarea:focus {
   align-items: center;
 }
 
+.google-login {
+  margin-top: 1px;
+}
+
 /*!******************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./src/css/tailwind.css ***!
   \******************************************************************************************************************/
