@@ -30875,7 +30875,7 @@ __webpack_require__.r(__webpack_exports__);
     if(true) {
       (function() {
         var localsJsonString = undefined;
-        // 1747314524339
+        // 1747458842059
         var cssReload = __webpack_require__(/*! ../../mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js */ "./node_modules/mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js")(module.id, {});
         // only invalidate when locals change
         if (
@@ -30910,7 +30910,7 @@ __webpack_require__.r(__webpack_exports__);
     if(true) {
       (function() {
         var localsJsonString = undefined;
-        // 1747400697634
+        // 1747458841965
         var cssReload = __webpack_require__(/*! ../../node_modules/mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js */ "./node_modules/mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js")(module.id, {});
         // only invalidate when locals change
         if (
@@ -30945,7 +30945,7 @@ __webpack_require__.r(__webpack_exports__);
     if(true) {
       (function() {
         var localsJsonString = undefined;
-        // 1747400697594
+        // 1747464367674
         var cssReload = __webpack_require__(/*! ../../node_modules/mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js */ "./node_modules/mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js")(module.id, {});
         // only invalidate when locals change
         if (
@@ -80280,6 +80280,7 @@ var NotFound_1 = __webpack_require__(/*! ./pages/post/NotFound */ "./src/js/page
 var Terms_1 = __webpack_require__(/*! ./pages/legal/Terms */ "./src/js/pages/legal/Terms.tsx");
 var Privacy_1 = __webpack_require__(/*! ./pages/legal/Privacy */ "./src/js/pages/legal/Privacy.tsx");
 var Help_1 = __webpack_require__(/*! ./pages/legal/Help */ "./src/js/pages/legal/Help.tsx");
+var GoogleLogin_1 = __webpack_require__(/*! ./pages/auth/GoogleLogin */ "./src/js/pages/auth/GoogleLogin.tsx");
 var App = function () {
     return (React.createElement(react_router_dom_1.BrowserRouter, null,
         React.createElement(AuthContext_1.AuthProvider, null,
@@ -80309,7 +80310,8 @@ var App = function () {
                                     React.createElement(react_router_dom_1.Route, { path: "/signup", element: React.createElement(Signup_1.Signup, null) }),
                                     React.createElement(react_router_dom_1.Route, { path: "/signin", element: React.createElement(Login_1.Login, null) }),
                                     React.createElement(react_router_dom_1.Route, { path: "/forgot-password", element: React.createElement(ForgotPassword_1.ForgotPassword, null) }),
-                                    React.createElement(react_router_dom_1.Route, { path: "/reset-password", element: React.createElement(ResetPassword_1.ResetPassword, null) }))))))))));
+                                    React.createElement(react_router_dom_1.Route, { path: "/reset-password", element: React.createElement(ResetPassword_1.ResetPassword, null) }),
+                                    React.createElement(react_router_dom_1.Route, { path: "/google-login", element: React.createElement(GoogleLogin_1.GoogleLogin, null) }))))))))));
 };
 exports.App = App;
 
@@ -85096,6 +85098,83 @@ var ForgotPassword = function () {
         react_1.default.createElement(Footer_1.Footer, { className: "text-center height-50" })));
 };
 exports.ForgotPassword = ForgotPassword;
+
+
+/***/ }),
+
+/***/ "./src/js/pages/auth/GoogleLogin.tsx":
+/*!*******************************************!*\
+  !*** ./src/js/pages/auth/GoogleLogin.tsx ***!
+  \*******************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.GoogleLogin = void 0;
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var js_cookie_1 = __importDefault(__webpack_require__(/*! js-cookie */ "./node_modules/js-cookie/dist/js.cookie.js"));
+var GoogleLogin = function () {
+    var handleGoogleLogin = function () {
+        // RailsのGoogle OAuthエンドポイントにリダイレクト
+        window.location.href = "http://localhost:3000/auth/google_oauth2";
+    };
+    (0, react_1.useEffect)(function () {
+        var params = new URLSearchParams(window.location.search);
+        var accessToken = params.get("access-token");
+        var client = params.get("client");
+        var uid = params.get("uid");
+        console.log({ accessToken: accessToken, client: client, uid: uid });
+        if (accessToken && client && uid) {
+            // Cookiesに保存（セキュアなオプションは環境に応じて調整してください）
+            js_cookie_1.default.set("_access_token", accessToken);
+            js_cookie_1.default.set("_client", client);
+            js_cookie_1.default.set("_uid", uid);
+            alert("ログイン成功！");
+            // ログイン後のページに遷移
+            window.location.href = "/dashboard"; // 必要に応じて変更
+        }
+    }, []);
+    return (react_1.default.createElement("div", { className: "layout" },
+        react_1.default.createElement("button", { onClick: handleGoogleLogin }, "Google\u3067\u30ED\u30B0\u30A4\u30F3")));
+};
+exports.GoogleLogin = GoogleLogin;
 
 
 /***/ }),
@@ -101596,7 +101675,7 @@ function __rewriteRelativeImportExtension(path, preserveJsx) {
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("3209b09be004a2db6e1c")
+/******/ 		__webpack_require__.h = () => ("8aca2b46b63cd2cf1086")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
