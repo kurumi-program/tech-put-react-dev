@@ -10,7 +10,7 @@ export const AuthForm = ({ onSubmit, children }: PropsWithChildren<Props>) => {
       <div className="login-form">
         <div className="login-form-wrapper border">
           <h1 translate="no" className="logo form-logo text-center">
-            TechPutPu
+            TechPuttt
           </h1>
           {children}
         </div>
