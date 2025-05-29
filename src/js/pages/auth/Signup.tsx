@@ -27,7 +27,7 @@ export const Signup = () => {
         <InputArea type="email" value={email} onChange={setEmail} placeholder="メールアドレス" />
         {signupErrors.email.map((mail, index) => (
           <p className="text-red-600 text-sm" key={index}>
-            メールアドレス{mail}
+            アドレス{mail}
           </p>
         ))}
         <InputArea
